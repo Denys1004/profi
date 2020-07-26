@@ -1,7 +1,7 @@
-$bgcolor1: rgb(100, 100, 160);
-$bgcolor2: #ffffff;
-$textcolor: rgb(233, 233, 233);
+$white: #fff;
+$grey: rgb(225, 225, 225);
 $red: #b0242e;
+$orange: #f5b30c;
 $black: rgb(0, 0, 0);
 
 *{
@@ -12,14 +12,15 @@ $black: rgb(0, 0, 0);
     list-style: none;
     font-family: Arial, Helvetica, sans-serif;
 }
-// body{
-//     background-color: pink;
-// }
+
+// NAVIGATION
+// *****************************************************************************************
 .nav-container{
     padding: 0 20px;
-    background-color: $bgcolor2;
+    background-color: $white;
     height: 8vh;
     text-align: center;
+    // border-bottom: 1px solid $grey;
     nav{
         display: flex;
         justify-content: space-between;
@@ -32,9 +33,10 @@ $black: rgb(0, 0, 0);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            min-width: 230px;
+            min-width: 280px;
             li{
                 list-style: none;
+                display: inline-block;
                 a{
                     color: $black;
                 }
@@ -42,23 +44,29 @@ $black: rgb(0, 0, 0);
         }
         #logo_container{
             flex:2;
-            ion-icon {
-                color: $red;
-                font-size: 27px;
-                margin-bottom: -5px;
-            }
-            h4{
+            a{
                 color: $black;
-                text-transform: uppercase;
-                margin-bottom: 0;
-                font-family: 'Righteous', cursive;
-                letter-spacing: 2px;
+                &:hover{
+                    text-decoration: none;
+                }
+                ion-icon {
+                    color: $red;
+                    font-size: 27px;
+                    margin-bottom: -5px;
+                }
+                h4{
+                    color: $black;
+                    text-transform: uppercase;
+                    margin-bottom: 0;
+                    font-family: 'Righteous', cursive;
+                    letter-spacing: 2px;
+                }
             }
         }
         /* BURGER LINES */
         .burger{
             cursor: pointer;
-            width: 26px;
+            width: 24px;
             min-width: 230px;
             flex:0.5;
             display: flex;
@@ -66,10 +74,10 @@ $black: rgb(0, 0, 0);
             align-items: flex-end;
             .line1, .line2, .line3 {
                 width: 25px;
-                height: 3px;
+                height: 2px;
                 background-color: $black;
                 margin: 3px 0px;
-                border-radius: 3px;
+                border-radius: 2px;
                 transition: all 0.4s ease;
                 align-items: right;
             }
@@ -82,21 +90,17 @@ $black: rgb(0, 0, 0);
             opacity: 0;
         }
         .toggle .line3{
-            transform: rotate(45deg) translate(-5px, -8px);
+            transform: rotate(45deg) translate(-4px, -7px);
         }
     }
 }
-
-/* right now it is possible to scroll right, and we don't want that, 
-so we need to write body { overflow: hidden;}, see code below 
-about transform: translateX(100%); */
 body{
     overflow-x: hidden;
     /* here we making navlinks under navbar */
     .nav-links{
         width: 200px;
         position: absolute;
-        background-color: $bgcolor2;
+        background-color: $white;
         right: 0px;
         height: 92vh;
         top: 8vh;
@@ -106,18 +110,23 @@ body{
         transition: transform 0.5s ease-in;
         #nav_logo{
             margin: 20px 0;
-            ion-icon {
-                color: $red;
-                font-size: 27px;
-                margin-bottom: -5px;
-            }
-
-            h4{
+            a{
                 color: $black;
-                text-transform: uppercase;
-                margin-bottom: 0;
-                font-family: 'Righteous', cursive;
-                letter-spacing: 2px;
+                &:hover{
+                    text-decoration: none;
+                }
+                ion-icon {
+                    color: $red;
+                    font-size: 27px;
+                    margin-bottom: -5px;
+                }
+                h4{
+                    color: $black;
+                    text-transform: uppercase;
+                    margin-bottom: 0;
+                    font-family: 'Righteous', cursive;
+                    letter-spacing: 2px;
+                }
             }
         }
         li{
@@ -127,9 +136,9 @@ body{
                 color: $black;
                 letter-spacing: 2px;
                 margin-top: 20px;
-                &:hover{
-                    color: orange;
-                }
+                // &:hover{
+                //     color: orange;
+                // }
             }
         }   
     }
@@ -152,59 +161,197 @@ body{
     }
 }
 
+// Image
+// *****************************************************************************************
 #main_image{
     height: 520px;
     width: 100%;
     background: url(../images/people.jpg) no-repeat top center;
     text-align: center;
-    outline: 2px solid white;
-    outline-offset: -20px;
     display: flex;
     align-items: flex-end;
-    
     #title_container{
-
         background-color: rgba(255, 255, 255, 0.92);
-        padding: 30px 50px;
-        max-width: 70%;
+        padding: 20px 30px;
+        max-width: 700px;
         margin: 0 auto 40px;
-        h1{
-            // text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        .title_span{
+            color: $red;
+            font-weight: bold;
         }
-        .button_container{
-            a{
-                padding: 10px 20px;
+        #title{
+            h1{
+                text-align: left;
+                margin-right: 20px;
+                flex: 3;
             }
-            .job_btn{
-                display: inline-block;
-                width: 120px;
-                font-weight: 400;
-                color: #ffffff;
-                text-align: center;
-                vertical-align: middle;
-                background-color: $red;
-                border: 1px solid transparent;
-                padding: 10px 20px;
-                font-size: 1rem;
-                line-height: 1.5;
-                border-radius: 2.25rem;
+        }
 
+        #button_container{
+            text-align: right;
+            flex: 1;
+            display: inline-block;
+            .devider{
+                width: 20px;
+                height: 20px;
             }
             .place_btn{
-                margin-right: 60px;
+                background-color: $white;
+                border: 2px solid $red;
+                padding: 10px 20px;
+                color: $red;
+                text-align: center;
+                display: block;
+                width: 120px;
+                &:hover{
+                    text-decoration: none;
+                    background-color: $orange;
+                    border: 2px solid $black;
+                    color: $black;
+                }
             }
-
+            .find_btn{
+                background-color: $red;
+                border: 2px solid $red;
+                padding: 10px 20px;
+                text-align: center;
+                color: $white;
+                display: block;
+                width: 120px;
+                &:hover{
+                    text-decoration: none;
+                    background-color: $orange;
+                    border: 2px solid $black;
+                    color: $black;
+                }
+            }
         }
     }
 }
+
+// Steps
+// *****************************************************************************************
 main{
     text-align: center;
+    h3{
+        font-weight: bold; 
+        margin: 20px 0 30px;
+    }
+    #steps_container{
+        max-width: 1100px;
+        margin: 0 auto;
+        display: flex;
+        align-items: flex-start;
+        padding: 10px 20px;
+        .descripion_container{
+            text-align: center;
+            width: 25%;
+            flex:1;
+            display: inline-block;
+            img{
+                height: 80px;
+            }
+            h4{
+                font-weight: bold; 
+                margin-top: 10px;
+            }
+            p{
+                .desc_span{
+                    font-weight: bold;
+                }
+            }
+        }
+        .step2{
+            margin: 0 30px;
+        }
+    }
+}
+
+// Mobile App container
+// *****************************************************************************************
+section{
+    background-color: $grey;
+    margin-top: 20px;
+    #phone_container{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        max-width: 900px;
+        margin: 0 auto;
+        .phone_text{
+            text-align: right;
+            padding-left:20px ;
+            h1{
+                color: $black;
+                letter-spacing: 1px;
+            }
+        }
+        .phone_image{
+            flex:1.5;
+            text-align: center;
+            img{
+                width: 90%;
+            }
+        }
+    }
 }
 
 
+footer{
+    text-align: center;
+    padding: 20px;
+    small{
+        margin: 0;
+        padding: 0;
+    }
+}
 
 
+.page_container{
+    max-width: 700px;
+    padding: 20px;
+    margin: 0 auto;
+    border: 1px solid $grey;
+    form{
+        .button_form{
+            text-align: center;
+            .mybutton{
+                background-color: $white;
+                border: 2px solid $red;
+                padding: 10px 20px;
+                color: $red;
+                text-align: center;
+                display: block;
+                width: 120px;
+                &:hover{
+                    text-decoration: none;
+                    background-color: $red;
+                    border: 2px solid $red;
+                    color: $white;
+                }
+            }
+        }
+    }
+}
 
+
+.errors{
+    color: rgb(255, 0, 0);
+}
+
+.dashboard_page_container{
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+// MEDIA SCREEN
+// *****************************************************************************************
+
+// Navigation
 @media screen and (max-width:690px){
     .nav-container{
         text-align: start;
@@ -242,10 +389,233 @@ main{
     }
 }
 
+// Main_image Div
+@media screen and (max-width:1132px){
+    #main_image{    
+        #title_container{
+            max-width: 70%;
+            #title{
+                h1{
+                    font-size: 32px;
+                }
+            }
+            #button_container{
+                .devider{
+                    width: 18px;
+                    height: 18px;
+                }
+                .place_btn{
+                    padding: 6px 12px;
+                    width: 100px;
+                }
+                .find_btn{
+                    padding: 6px 12px;
+                    width: 100px;
+                }
+            }
+        }
+    } 
+}
+@media screen and (max-width:807px){
+    #main_image{    
+        #title_container{
+            #title{
+                h1{
+                    font-size: 28px;
+                }
+            }
+            #button_container{
+                .devider{
+                    width: 16px;
+                    height: 16px;
+                }
+                .place_btn{
+                    padding: 5px 10px;
+                    width: 98px;
+                }
+                .find_btn{
+                    padding: 5px 10px;
+                    width: 98px;
+                }
+            }
+        }
+    } 
+}
+@media screen and (max-width:550px){
+    #main_image{    
+        #title_container{
+            #title{
+                h1{
+                    font-size: 22px;
+                }
+            }
+            #button_container{
+                .devider{
+                    width: 14px;
+                    height: 14px;
+                }
+                .place_btn{
+                    padding: 4px 7px;
+                    width: 92px;
+                }
+                .find_btn{
+                    padding: 4px 7px;
+                    width: 92px;
+                }
+            }
+        }
+    } 
+}
+@media screen and (max-width:498px){
+    #main_image{   
+        #title_container{
+            flex-direction: column;
+            #title{
+                text-align: center;
+                h1{
+                    text-align: center;
+                    margin-bottom: 10px;
+                }
+            }
+            #button_container{
+                display: flex;
+                .place_btn{
+                    padding: 4px 7px;
+                    width: 92px;
+                }
+                .find_btn{
+                    padding: 4px 7px;
+                    width: 92px;
+                }
+            }
+        }
+    } 
+}
 
+// Main. 3 carts
+@media screen and (max-width:690px){
+    main{
+        h3{
+            font-size: 26px;
+        }
+        #steps_container{
+            padding: 10px 15px;
+            .descripion_container{
+                text-align: center;
+                width: 25%;
+                flex:1;
+                display: inline-block;
+                img{
+                    height: 80px;
+                }
+                h4{
+                    font-size: 20px;
+                }
+                p{
+                    font-size: 0.84rem;
+                }
+            }
+            .step2{
+                margin: 0 30px;
+            }
+        }
+    } 
+}
+@media screen and (max-width:584px){
+    main{
+        h3{
+            font-size: 24px;
+        }
+        #steps_container{
+            padding: 10px 12px;
+            .descripion_container{
+                width: 27%;
+                img{
+                    height: 70px;
+                }
+                h4{
+                    font-size: 18px;
+                }
+                p{
+                    font-size: 0.8rem;
+                }
+            }
+        }
+    } 
+}
+@media screen and (max-width:503px){
+    main{
+        h3{
+            font-size: 26px;
+        }
+        #steps_container{
+            padding: 10px 15px;
+            flex-direction: column;
+            align-items: center;
+            .descripion_container{
+                text-align: center;
+                width: 100%;
+                flex:1;
+                display: inline-block;
+                img{
+                    height: 80px;
+                }
+                h4{
+                    font-size: 20px;
+                }
+                p{
+                    font-size: 0.84rem;
+                }
+            }
+            .step2{
+                margin: 0 30px;
+            }
+        }
+    } 
+}
 
+// Mobile App container
+@media screen and (max-width:800px){
+    section{
+        padding: 0 20px;
+        #phone_container{
+            flex-direction: column;
 
-
+            .phone_text{
+                text-align: center;
+                h1{
+                    font-size: 26px;
+                }
+            }
+            .phone_image{
+                text-align: center;
+                margin-top: 20px;
+                img{
+                    width: 70%;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width:510px){
+    section{
+        padding: 0 14px;
+        #phone_container{
+            .phone_text{
+                h1{
+                    font-size: 20px;
+                }
+            }
+            .phone_image{
+                text-align: center;
+                margin-top: 20px;
+                img{
+                    width: 80%;
+                }
+            }
+        }
+    }
+}
 
 
 

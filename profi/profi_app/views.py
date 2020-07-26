@@ -5,7 +5,7 @@ import bcrypt
 from datetime import datetime
 
 def index(request):
-    return render(request, "welcome.html")
+    return render(request, "home.html")
 
 # DASHBOARD PAGE
 def dashboard(request):
@@ -165,3 +165,23 @@ def remove_category(request, category_id, job_id):
         job.categories.remove(category)
         job.save()
     return redirect(f'/edit_job/{job_id}')
+
+
+
+# VIEW USER PROFILE
+def profile(request, user_id):
+    user_prof = User.objects.get(id = user_id)
+    context = {
+        'user_profile': user_prof
+    }
+    return render(request, 'user_profile.html', context)
+    
+# VIEW CURRENT USER's JOBS
+def see_user_jobs(request, user_id):
+    cur_user = User.objects.get(id = user_id)
+
+    all_cur_user_jobs = cur_user.executor.all()
+    context = {
+        'all_jobs': all_cur_user_jobs
+    }
+    return render(request, 'users_jobs.html', context) 

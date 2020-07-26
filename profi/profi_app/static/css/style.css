@@ -10,7 +10,7 @@
 
 .nav-container {
   padding: 0 20px;
-  background-color: #ffffff;
+  background-color: #fff;
   height: 8vh;
   text-align: center;
 }
@@ -45,11 +45,12 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  min-width: 230px;
+  min-width: 280px;
 }
 
 .nav-container nav .contact_container li {
   list-style: none;
+  display: inline-block;
 }
 
 .nav-container nav .contact_container li a {
@@ -62,13 +63,21 @@
           flex: 2;
 }
 
-.nav-container nav #logo_container ion-icon {
+.nav-container nav #logo_container a {
+  color: black;
+}
+
+.nav-container nav #logo_container a:hover {
+  text-decoration: none;
+}
+
+.nav-container nav #logo_container a ion-icon {
   color: #b0242e;
   font-size: 27px;
   margin-bottom: -5px;
 }
 
-.nav-container nav #logo_container h4 {
+.nav-container nav #logo_container a h4 {
   color: black;
   text-transform: uppercase;
   margin-bottom: 0;
@@ -78,7 +87,7 @@
 
 .nav-container nav .burger {
   cursor: pointer;
-  width: 26px;
+  width: 24px;
   min-width: 230px;
   -webkit-box-flex: 0.5;
       -ms-flex: 0.5;
@@ -97,10 +106,10 @@
 
 .nav-container nav .burger .line1, .nav-container nav .burger .line2, .nav-container nav .burger .line3 {
   width: 25px;
-  height: 3px;
+  height: 2px;
   background-color: black;
   margin: 3px 0px;
-  border-radius: 3px;
+  border-radius: 2px;
   -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
   -webkit-box-align: right;
@@ -118,13 +127,10 @@
 }
 
 .nav-container nav .toggle .line3 {
-  -webkit-transform: rotate(45deg) translate(-5px, -8px);
-          transform: rotate(45deg) translate(-5px, -8px);
+  -webkit-transform: rotate(45deg) translate(-4px, -7px);
+          transform: rotate(45deg) translate(-4px, -7px);
 }
 
-/* right now it is possible to scroll right, and we don't want that, 
-so we need to write body { overflow: hidden;}, see code below 
-about transform: translateX(100%); */
 body {
   overflow-x: hidden;
   /* here we making navlinks under navbar */
@@ -136,7 +142,7 @@ body {
 body .nav-links {
   width: 200px;
   position: absolute;
-  background-color: #ffffff;
+  background-color: #fff;
   right: 0px;
   height: 92vh;
   top: 8vh;
@@ -157,13 +163,21 @@ body .nav-links #nav_logo {
   margin: 20px 0;
 }
 
-body .nav-links #nav_logo ion-icon {
+body .nav-links #nav_logo a {
+  color: black;
+}
+
+body .nav-links #nav_logo a:hover {
+  text-decoration: none;
+}
+
+body .nav-links #nav_logo a ion-icon {
   color: #b0242e;
   font-size: 27px;
   margin-bottom: -5px;
 }
 
-body .nav-links #nav_logo h4 {
+body .nav-links #nav_logo a h4 {
   color: black;
   text-transform: uppercase;
   margin-bottom: 0;
@@ -180,10 +194,6 @@ body .nav-links li a {
   color: black;
   letter-spacing: 2px;
   margin-top: 20px;
-}
-
-body .nav-links li a:hover {
-  color: orange;
 }
 
 body .nav-active {
@@ -225,8 +235,6 @@ body .nav-active {
   width: 100%;
   background: url(../images/people.jpg) no-repeat top center;
   text-align: center;
-  outline: 2px solid white;
-  outline-offset: -20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -237,36 +245,212 @@ body .nav-active {
 
 #main_image #title_container {
   background-color: rgba(255, 255, 255, 0.92);
-  padding: 30px 50px;
-  max-width: 70%;
+  padding: 20px 30px;
+  max-width: 700px;
   margin: 0 auto 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
-#main_image #title_container .button_container a {
-  padding: 10px 20px;
+#main_image #title_container .title_span {
+  color: #b0242e;
+  font-weight: bold;
 }
 
-#main_image #title_container .button_container .job_btn {
+#main_image #title_container #title h1 {
+  text-align: left;
+  margin-right: 20px;
+  -webkit-box-flex: 3;
+      -ms-flex: 3;
+          flex: 3;
+}
+
+#main_image #title_container #button_container {
+  text-align: right;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   display: inline-block;
-  width: 120px;
-  font-weight: 400;
-  color: #ffffff;
-  text-align: center;
-  vertical-align: middle;
-  background-color: #b0242e;
-  border: 1px solid transparent;
-  padding: 10px 20px;
-  font-size: 1rem;
-  line-height: 1.5;
-  border-radius: 2.25rem;
 }
 
-#main_image #title_container .button_container .place_btn {
-  margin-right: 60px;
+#main_image #title_container #button_container .devider {
+  width: 20px;
+  height: 20px;
+}
+
+#main_image #title_container #button_container .place_btn {
+  background-color: #fff;
+  border: 2px solid #b0242e;
+  padding: 10px 20px;
+  color: #b0242e;
+  text-align: center;
+  display: block;
+  width: 120px;
+}
+
+#main_image #title_container #button_container .place_btn:hover {
+  text-decoration: none;
+  background-color: #f5b30c;
+  border: 2px solid black;
+  color: black;
+}
+
+#main_image #title_container #button_container .find_btn {
+  background-color: #b0242e;
+  border: 2px solid #b0242e;
+  padding: 10px 20px;
+  text-align: center;
+  color: #fff;
+  display: block;
+  width: 120px;
+}
+
+#main_image #title_container #button_container .find_btn:hover {
+  text-decoration: none;
+  background-color: #f5b30c;
+  border: 2px solid black;
+  color: black;
 }
 
 main {
   text-align: center;
+}
+
+main h3 {
+  font-weight: bold;
+  margin: 20px 0 30px;
+}
+
+main #steps_container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  padding: 10px 20px;
+}
+
+main #steps_container .descripion_container {
+  text-align: center;
+  width: 25%;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: inline-block;
+}
+
+main #steps_container .descripion_container img {
+  height: 80px;
+}
+
+main #steps_container .descripion_container h4 {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+main #steps_container .descripion_container p .desc_span {
+  font-weight: bold;
+}
+
+main #steps_container .step2 {
+  margin: 0 30px;
+}
+
+section {
+  background-color: #e1e1e1;
+  margin-top: 20px;
+}
+
+section #phone_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+section #phone_container .phone_text {
+  text-align: right;
+  padding-left: 20px;
+}
+
+section #phone_container .phone_text h1 {
+  color: black;
+  letter-spacing: 1px;
+}
+
+section #phone_container .phone_image {
+  -webkit-box-flex: 1.5;
+      -ms-flex: 1.5;
+          flex: 1.5;
+  text-align: center;
+}
+
+section #phone_container .phone_image img {
+  width: 90%;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+}
+
+footer small {
+  margin: 0;
+  padding: 0;
+}
+
+.page_container {
+  max-width: 700px;
+  padding: 20px;
+  margin: 0 auto;
+  border: 1px solid #e1e1e1;
+}
+
+.page_container form .button_form {
+  text-align: center;
+}
+
+.page_container form .button_form .mybutton {
+  background-color: #fff;
+  border: 2px solid #b0242e;
+  padding: 10px 20px;
+  color: #b0242e;
+  text-align: center;
+  display: block;
+  width: 120px;
+}
+
+.page_container form .button_form .mybutton:hover {
+  text-decoration: none;
+  background-color: #b0242e;
+  border: 2px solid #b0242e;
+  color: #fff;
+}
+
+.errors {
+  color: red;
+}
+
+.dashboard_page_container {
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 @media screen and (max-width: 690px) {
@@ -302,6 +486,219 @@ main {
   }
   .nav-container nav .nav-links #nav_logo {
     text-align: center;
+  }
+}
+
+@media screen and (max-width: 1132px) {
+  #main_image #title_container {
+    max-width: 70%;
+  }
+  #main_image #title_container #title h1 {
+    font-size: 32px;
+  }
+  #main_image #title_container #button_container .devider {
+    width: 18px;
+    height: 18px;
+  }
+  #main_image #title_container #button_container .place_btn {
+    padding: 6px 12px;
+    width: 100px;
+  }
+  #main_image #title_container #button_container .find_btn {
+    padding: 6px 12px;
+    width: 100px;
+  }
+}
+
+@media screen and (max-width: 807px) {
+  #main_image #title_container #title h1 {
+    font-size: 28px;
+  }
+  #main_image #title_container #button_container .devider {
+    width: 16px;
+    height: 16px;
+  }
+  #main_image #title_container #button_container .place_btn {
+    padding: 5px 10px;
+    width: 98px;
+  }
+  #main_image #title_container #button_container .find_btn {
+    padding: 5px 10px;
+    width: 98px;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  #main_image #title_container #title h1 {
+    font-size: 22px;
+  }
+  #main_image #title_container #button_container .devider {
+    width: 14px;
+    height: 14px;
+  }
+  #main_image #title_container #button_container .place_btn {
+    padding: 4px 7px;
+    width: 92px;
+  }
+  #main_image #title_container #button_container .find_btn {
+    padding: 4px 7px;
+    width: 92px;
+  }
+}
+
+@media screen and (max-width: 498px) {
+  #main_image #title_container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  #main_image #title_container #title {
+    text-align: center;
+  }
+  #main_image #title_container #title h1 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  #main_image #title_container #button_container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  #main_image #title_container #button_container .place_btn {
+    padding: 4px 7px;
+    width: 92px;
+  }
+  #main_image #title_container #button_container .find_btn {
+    padding: 4px 7px;
+    width: 92px;
+  }
+}
+
+@media screen and (max-width: 690px) {
+  main h3 {
+    font-size: 26px;
+  }
+  main #steps_container {
+    padding: 10px 15px;
+  }
+  main #steps_container .descripion_container {
+    text-align: center;
+    width: 25%;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    display: inline-block;
+  }
+  main #steps_container .descripion_container img {
+    height: 80px;
+  }
+  main #steps_container .descripion_container h4 {
+    font-size: 20px;
+  }
+  main #steps_container .descripion_container p {
+    font-size: 0.84rem;
+  }
+  main #steps_container .step2 {
+    margin: 0 30px;
+  }
+}
+
+@media screen and (max-width: 584px) {
+  main h3 {
+    font-size: 24px;
+  }
+  main #steps_container {
+    padding: 10px 12px;
+  }
+  main #steps_container .descripion_container {
+    width: 27%;
+  }
+  main #steps_container .descripion_container img {
+    height: 70px;
+  }
+  main #steps_container .descripion_container h4 {
+    font-size: 18px;
+  }
+  main #steps_container .descripion_container p {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 503px) {
+  main h3 {
+    font-size: 26px;
+  }
+  main #steps_container {
+    padding: 10px 15px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  main #steps_container .descripion_container {
+    text-align: center;
+    width: 100%;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    display: inline-block;
+  }
+  main #steps_container .descripion_container img {
+    height: 80px;
+  }
+  main #steps_container .descripion_container h4 {
+    font-size: 20px;
+  }
+  main #steps_container .descripion_container p {
+    font-size: 0.84rem;
+  }
+  main #steps_container .step2 {
+    margin: 0 30px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  section {
+    padding: 0 20px;
+  }
+  section #phone_container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  section #phone_container .phone_text {
+    text-align: center;
+  }
+  section #phone_container .phone_text h1 {
+    font-size: 26px;
+  }
+  section #phone_container .phone_image {
+    text-align: center;
+    margin-top: 20px;
+  }
+  section #phone_container .phone_image img {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 510px) {
+  section {
+    padding: 0 14px;
+  }
+  section #phone_container .phone_text h1 {
+    font-size: 20px;
+  }
+  section #phone_container .phone_image {
+    text-align: center;
+    margin-top: 20px;
+  }
+  section #phone_container .phone_image img {
+    width: 80%;
   }
 }
 /*# sourceMappingURL=style.css.map */
