@@ -45,7 +45,7 @@ def create(request):
         last_i = new_user.last_name[0]
         initials = first_i + last_i
         request.session['initials'] = initials
-        return redirect('/dashboard')
+        return redirect('/')
 
 # LOGIN
 def login(request):
@@ -64,8 +64,8 @@ def login(request):
             last_i = user.last_name[0]
             initials = first_i + last_i
             request.session['initials'] = initials
-            return redirect('/dashboard')
-        # return redirect('/login')
+            return redirect('/')
+
 
 # LOGOUT
 def logout(request):
@@ -120,7 +120,7 @@ def create_new_job(request):
             this_job.categories.add(cur_category)
             this_job.save()
 
-        return redirect('/create_new_job')
+        return redirect('/dashboard')
 
 # ADD JOB TO USER
 def add_job(request, job_id):
@@ -128,7 +128,7 @@ def add_job(request, job_id):
     job = Job.objects.get(id =job_id)
     job.executor = user
     job.save()
-    return redirect('/dashboard')
+    return redirect(f'/user/{user.id}/profile')
 
 # DONE WITH JOB
 def done_job(request, job_id):
@@ -197,16 +197,26 @@ def profile(request, user_id):
         needed_user = User.objects.get(id = user_id)
         all_posted_jobs = needed_user.poster.all()
         all_active_jobs = needed_user.executor.all()
+        first_i = needed_user.first_name[0]
+        last_i = needed_user.last_name[0]
+        initials = first_i + last_i
         context = {
             'user': needed_user,
+            'initials': initials,
             'all_posted_jobs': all_posted_jobs, 
             'all_active_jobs': all_active_jobs,
             'all_jobs' : Job.objects.all().order_by('-created_at')
         }
-        return render(request, 'user_profile.html', context)
+        return render(request, 'user_profile.html', context)  
     else:
         user_id = request.session['user_id']
         return redirect(f'/user/{user_id}/profile')
 
-
+def all_users(request):
+    context = {
+        'cur_user':  User.objects.get(id = request.session['user_id']),
+        'users' : User.objects.all(),
+        'all_jobs' : Job.objects.all().order_by('-created_at'),
+    }
+    return render(request, 'all_users.html', context)
 

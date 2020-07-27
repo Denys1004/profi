@@ -30,20 +30,20 @@
             <hr>
             <h2>{{needed_job.title}}</h2>    
             <p>{{needed_job.description}}</p>
-            <p>Posted by {{needed_job.poster.first_name}}, {{needed_job.created_at}}</p>
+            <p>Posted by <a href="/user/{{needed_job.poster.id}}/profile">{{needed_job.poster.first_name}}</a>, {{needed_job.created_at}}</p>
             <p>Categories: 
                 {% for category in needed_job.categories.all %}
-                <span class='cat_desc'>{{category.name}}<span class='cat_dev'> | </span></span>
+                <span class='cat_desc'>{{category.name}}<span class='vertical'> |</span></span>
                 {% endfor %}
             </p>  
 
 
             {% if request.session.user_id != null %}
                 {%if needed_job.executor.id == null %}
-                <a class='btn btn-warning' href="/add_job/{{needed_job.id}}">Add to my list</h3></a>
+                <a class='mybutton2' href="/add_job/{{needed_job.id}}">Add to my list</h3></a>
                 {% endif %}
                 {% if needed_job.executor != null and needed_job.executor.id == request.session.user_id %}
-                <a class='btn btn-warning' href="/giveup_job/{{needed_job.id}}">Give up this job</a>
+                <a class='mybutton2' href="/giveup_job/{{needed_job.id}}">Give up this job</a>
                 {% endif %}
             {% endif %}
 

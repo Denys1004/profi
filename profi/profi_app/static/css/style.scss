@@ -1,5 +1,6 @@
 $white: #fff;
 $grey: rgb(225, 225, 225);
+$darkgrey: rgb(175, 175, 175);
 $red: #b0242e;
 $orange: #f5b30c;
 $black: rgb(0, 0, 0);
@@ -15,9 +16,14 @@ $black: rgb(0, 0, 0);
 body{
     background-color: $grey;
 }
+.vertical{
+    color: $black;
+}
+.errors{
+    color: rgb(255, 0, 0);
+}
 
 // NAVIGATION
-// *****************************************************************************************
 .nav-container{
     padding: 0 20px;
     background-color: $white;
@@ -31,17 +37,17 @@ body{
         height: 8vh;
         .contact_container{
             margin-bottom: 0;
-            flex:0.5;
             color: $black;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            min-width: 300px;
+            min-width: 500px;
+            max-width: 520px;
             a{
                 #initials{
                     background-color: $red;
                     border-radius: 50%;
-                    padding: 5px;
+                    padding: 6px;
                     text-transform: uppercase;
                     color: $white;
                 }
@@ -52,10 +58,12 @@ body{
                 a{
                     color: $black;
                 }
+                .login_a{
+                    color: $darkgrey;
+                }
             }
         }
         #logo_container{
-            flex:2;
             a{
                 color: $black;
                 &:hover{
@@ -80,7 +88,6 @@ body{
             cursor: pointer;
             width: 24px;
             min-width: 230px;
-            flex:0.5;
             display: flex;
             flex-direction: column;
             align-items: flex-end;
@@ -173,8 +180,20 @@ body{
     }
 }
 
-// Image
+// FOOTER
+footer{
+    text-align: center;
+    padding: 20px;
+    small{
+        margin: 0;
+        padding: 0;
+    }
+}
+
+
+// HOME PAGE
 // *****************************************************************************************
+// image container
 #main_image{
     height: 520px;
     width: 100%;
@@ -201,7 +220,6 @@ body{
                 flex: 3;
             }
         }
-
         #button_container{
             text-align: right;
             flex: 1;
@@ -241,9 +259,7 @@ body{
         }
     }
 }
-
-// Steps
-// *****************************************************************************************
+// steps container
 main{
     text-align: center;
     background-color: $white;
@@ -280,9 +296,7 @@ main{
         }
     }
 }
-
-// Mobile App container
-// *****************************************************************************************
+// mobile App container
 section{
     background-color: $grey;
     padding-top: 20px;
@@ -312,89 +326,8 @@ section{
 }
 
 
-footer{
-    text-align: center;
-    padding: 20px;
-    small{
-        margin: 0;
-        padding: 0;
-    }
-}
-
-
-.page_container{
-    max-width: 700px;
-    padding: 20px;
-    margin: 0 auto;
-    border: 1px solid $grey;
-    form{
-        .button_form{
-            text-align: center;
-            .mybutton{
-                background-color: $white;
-                border: 2px solid $red;
-                padding: 10px 20px;
-                color: $red;
-                text-align: center;
-                display: block;
-                width: 120px;
-                &:hover{
-                    text-decoration: none;
-                    background-color: $red;
-                    border: 2px solid $red;
-                    color: $white;
-                }
-            }
-        }
-    }
-}
-
-
-
-
-.display_flex1{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 20px;
-    .reset{
-        background-color: $white;
-        border: 2px solid $red;
-        padding: 10px 20px;
-        color: $red;
-        text-align: center;
-        display: block;
-        width: 120px;
-        &:hover{
-            text-decoration: none;
-            background-color: $red;
-            color: $white;
-        }
-    }
-    .add_job_btn{
-        background-color: $red;
-        border: 2px solid $red;
-        padding: 10px 20px;
-        text-align: center;
-        color: $white;
-        display: block;
-        width: 120px;
-        &:hover{
-            text-decoration: none;
-            background-color: $white;
-            color: $red;
-        }
-    }
-
-}
-
-
-
-.errors{
-    color: rgb(255, 0, 0);
-}
-
 // DASHBOARD PAGE
+// *****************************************************************************************
 .dashboard_page_container{
     max-width: 1000px;
     margin: 0 auto;
@@ -447,47 +380,174 @@ footer{
     }
 }
 
-// MEDIA SCREEN
-// *****************************************************************************************
 
-// DASHBOARD PAGE
-@media screen and (max-width:600px){
-    .dashboard_page_container{
-        .job_container{
-            .top_desc{
-                padding: 4px 10px;
-                .job_title{
-                    h5{
-                        font-size: 16px;
-                    }
-                }
-                .action{
-                    a{
-                        font-size: 13px;
-                    }
-                }
+// USER PROFILE PAGE
+// *****************************************************************************************
+#profile_header{
+    padding: 10px 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    #profile_initial{
+        display: inline-block;
+        font-size: 54px;
+        width: 100px;
+        padding: 13px 8px 13px 10px;
+        color: $darkgrey;
+        border-radius: 50%;
+        border: 4px solid $darkgrey;
+    }
+    .personal_info{
+        text-align: right;
+        display: inline-block;
+        #dob{
+            margin-top: -8px;
+            color: $darkgrey;
+        }
+    }
+}
+.table-bordered{
+    border: 1px solid $black;
+    .thead-dark{
+        text-align: center;
+    }
+    tbody{
+        
+        .td_job{
+            width: 80%;
+            p{
+                font-weight: bold;
             }
-            .bottom_desc{
-                font-size: 14px;
-                padding: 0 10px;
+        }
+        .td_action{
+            text-align: center;
+            a{
+                color: $red;
             }
         }
     }
 }
-
-.vertical{
-    color: $black;
+.posted_job_container{
+    border: 2px solid $grey;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    .posted_job_title{
+        p{
+            margin: 0;
+        }
+    }
+    .action{
+        a{
+            color: $red;
+        }
+    }
 }
 
 
+// VIEW JOB PAGE
+// *****************************************************************************************
+.mybutton2{
+    min-width: 100px;
+    padding: 10px 20px;
+    text-align: center;
+    background-color: $white;
+    border: 2px solid $red;
+    color: $red;
+    &:hover{
+        background-color: $red;
+        border: 2px solid $red;
+        color: $white;
+        text-decoration: none;
+    }
+}
+.cat_desc{
+    color: $darkgrey;
+}
+
+// CREATE JOB PAGE
+// *****************************************************************************************
+.page_container{
+    max-width: 700px;
+    padding: 20px;
+    margin: 0 auto;
+    border: 1px solid $grey;
+    form{
+        .button_form{
+            text-align: center;
+            .mybutton{
+                background-color: $white;
+                border: 2px solid $red;
+                padding: 10px 20px;
+                color: $red;
+                text-align: center;
+                display: block;
+                width: 120px;
+                &:hover{
+                    text-decoration: none;
+                    background-color: $red;
+                    border: 2px solid $red;
+                    color: $white;
+                }
+            }
+        }
+    }
+}
+.display_flex1{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    .reset{
+        background-color: $white;
+        border: 2px solid $red;
+        padding: 10px 20px;
+        color: $red;
+        text-align: center;
+        display: block;
+        width: 120px;
+        &:hover{
+            text-decoration: none;
+            background-color: $red;
+            color: $white;
+        }
+    }
+    .add_job_btn{
+        background-color: $red;
+        border: 2px solid $red;
+        padding: 10px 20px;
+        text-align: center;
+        color: $white;
+        display: block;
+        width: 120px;
+        &:hover{
+            text-decoration: none;
+            background-color: $white;
+            color: $red;
+        }
+    }
+}
 
 
+// ALL USERS PAGE
+.all_users_page_container{
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 10px;
+    text-align: center;
+    #user_name{
+        text-align: left;
+    }
+}
 
 
-
+// *****************************************************************************************
+// ************************************    MEDIA SCREEN    *********************************
+// *****************************************************************************************
 
 // Navigation
-@media screen and (max-width:720px){
+@media screen and (max-width:750px){
     .nav-container{
         text-align: start;
         nav{
@@ -524,7 +584,8 @@ footer{
     }
 }
 
-// Main_image Div
+// HOME PAGE
+// main_image div container
 @media screen and (max-width:1132px){
     #main_image{    
         #title_container{
@@ -626,8 +687,7 @@ footer{
         }
     } 
 }
-
-// Main. 3 carts
+// steps container
 @media screen and (max-width:690px){
     main{
         h3{
@@ -708,8 +768,7 @@ footer{
         }
     } 
 }
-
-// Mobile App container
+// mobile App container
 @media screen and (max-width:800px){
     section{
         padding: 0 20px;
@@ -754,9 +813,63 @@ footer{
 
 
 
+// PROFILE PAGE
+@media screen and (max-width:480px){
+    #profile_header{
+        flex-direction: column;
+        align-items: center;
+        .personal_info{
+            text-align: center;
+        }
+    }
+    h3{
+        text-align: center;
+    }
+    .posted_job_container{
+        border: 2px solid $grey;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        .posted_job_title{
+            width: 50%;
+            p{
+                margin: 0;
+            }
+        }
+        .action{
+            text-align: right;
+            a{
+                color: $red;
+            }
+        }
+    }
+}
 
-
-
+// DASHBOARD PAGE
+@media screen and (max-width:600px){
+    .dashboard_page_container{
+        .job_container{
+            .top_desc{
+                padding: 4px 10px;
+                .job_title{
+                    h5{
+                        font-size: 16px;
+                    }
+                }
+                .action{
+                    a{
+                        font-size: 13px;
+                    }
+                }
+            }
+            .bottom_desc{
+                font-size: 14px;
+                padding: 0 10px;
+            }
+        }
+    }
+}
 
 
 

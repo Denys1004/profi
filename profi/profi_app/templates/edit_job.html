@@ -15,14 +15,11 @@
 </head>
 <body>
     {% include 'navbar.html' %}
-
-
     <div class="success_page_container">
         <div class="page_container">
             <div class="display_flex">
-                <h1>Hello {{ cur_user.first_name }}! Lets Edit your job</h1>
-                <a href="/logout">Logout</a>
-                <a href="/dashboard">Dashboard</a>
+                <h3>{{ cur_user.first_name }}, here you may edit your job.</h3>
+                <a href="/dashboard">Back to Dashboard</a>
             </div>
             {% if messages %}                                                                      				 	
             <ul class="messages">                                           								
@@ -62,35 +59,21 @@
                     </div>
                 </div>
 
-
-
-                <!-- <div class="form-group">
-                    <label for='category'>Categories:</label>
-
-                        {% for category in all_categories %}
-                        {{category.name}}<input type="checkbox" name="category" value ="{{category.id}}" > <br>
-                        {% endfor %}
-                        <br>
-                        Other category <input type="text" name="other"> 
-                </div> -->
-
-
-
                 <p>Added Categories: 
                     <ul>
                         {% for category in needed_job.categories.all %}
-                        <li>{{category.name}}  
+                        <li class="cat_desc">{{category.name}}  
                             {% if needed_job.poster.id == cur_user.id %}
-                            <a href="/remove_category/{{category.id}}/{{needed_job.id}}">| Remove</a>
+                            <a href="/remove_category/{{category.id}}/{{needed_job.id}}"><span class='vertical'>|</span> Remove</a>
                             {% endif%}
                         </li> 
                         {% endfor %}
                     </ul>
                 </p>  
-                <button>Update Job</button>
+                <button class="mybutton2">Update Job</button>
             </form>
             <br>
-            <a class="btn btn-warning" href="/create_new_job">Cancel</a>         
+            <a class="mybutton2" href="/dashboard">Cancel</a>         
         </div>
     </div>
 
