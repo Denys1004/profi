@@ -20,7 +20,7 @@
     <div class="success_page_container">
         <div class="page_container">
             <div class="display_flex">
-                <h1>Hello {{ cur_user.first_name }}! These are the job details!</h1>
+                <h1>Hello {{ cur_user.first_name }}! Create new job here!</h1>
                 <a href="/logout">Logout</a>
                 <a href="/dashboard">Dashboard</a>
             </div>
@@ -59,9 +59,9 @@
                     <label class="form-check-label" for="other">Or type your own category: </label>
                     <input type="text" name="other"> 
                 </div>
-                <div class="display_flex">
-                    <button class="btn btn-success">Add Job</button>
-                    <a class="btn btn-danger" href="/create_new_job">Cancel</a>  
+                <div class="display_flex1">
+                    <button class="add_job_btn">Add Job</button>
+                    <a class="reset" href="/create_new_job">Reset</a>  
                 </div>
             </form>
         </div>

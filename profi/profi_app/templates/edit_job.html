@@ -47,23 +47,35 @@
                     <label for="location">Location:</label>
                     <input type="text" name="location" class="form-control" id="location" value="{{needed_job.location}}">
                 </div>
+
                 <div class="form-group">
-                    <label for='category'>Categories:</label> <br>
+                    <label for='category'>Categories:</label>
+                    {% for category in all_categories %}
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="category" value="{{category.id}}">
+                        <label class="form-check-label" for="{{category.name}}">{{category.name}}</label>
+                    </div>
+                    {% endfor %}
+                    <div class="form-group">
+                        <label class="form-check-label mt-2" for="other">Other category</label>
+                        <input type="text" name="other"> 
+                    </div>
+                </div>
+
+
+
+                <!-- <div class="form-group">
+                    <label for='category'>Categories:</label>
+
                         {% for category in all_categories %}
                         {{category.name}}<input type="checkbox" name="category" value ="{{category.id}}" > <br>
                         {% endfor %}
                         <br>
                         Other category <input type="text" name="other"> 
-                </div>
+                </div> -->
 
 
 
-
-
-
-
-
-                
                 <p>Added Categories: 
                     <ul>
                         {% for category in needed_job.categories.all %}

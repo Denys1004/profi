@@ -10,13 +10,18 @@ def index(request):
 # DASHBOARD PAGE
 def dashboard(request):
     if 'user_id' not in request.session:
-        return redirect('/login')
-    context = {
-        'cur_user': User.objects.get(id = request.session['user_id']),
-        'users' : User.objects.all(),
-        'all_jobs' : Job.objects.all().order_by('-created_at'),
-    }
-    return render(request, 'dashboard.html', context)
+        context = {
+            'users' : User.objects.all(),
+            'all_jobs' : Job.objects.all().order_by('-created_at'),
+        }
+        return render(request, 'dashboard.html', context)
+    else:
+        context = {
+            'cur_user':  User.objects.get(id = request.session['user_id']),
+            'users' : User.objects.all(),
+            'all_jobs' : Job.objects.all().order_by('-created_at'),
+        }
+        return render(request, 'dashboard.html', context)
 
 # REGISTRATION
 def create(request):
@@ -36,6 +41,10 @@ def create(request):
         new_user = User.objects.register(request.POST)
         request.session.clear()
         request.session['user_id'] = new_user.id
+        first_i = new_user.first_name[0]
+        last_i = new_user.last_name[0]
+        initials = first_i + last_i
+        request.session['initials'] = initials
         return redirect('/dashboard')
 
 # LOGIN
@@ -51,8 +60,12 @@ def login(request):
         else:
             user = User.objects.get(email = request.POST['email'])
             request.session['user_id'] = user.id
+            first_i = user.first_name[0]
+            last_i = user.last_name[0]
+            initials = first_i + last_i
+            request.session['initials'] = initials
             return redirect('/dashboard')
-        return redirect('/login')
+        # return redirect('/login')
 
 # LOGOUT
 def logout(request):
@@ -61,23 +74,31 @@ def logout(request):
 
 # VIEW JOB
 def view_job(request, job_id):
-    if len(Job.objects.filter(id = job_id)) > 0:
+    if 'user_id' in request.session:
+        if len(Job.objects.filter(id = job_id)) > 0:
+            context = {
+                'cur_user': User.objects.get(id = request.session['user_id']),
+                'needed_job':Job.objects.get(id = job_id)
+            }
+            return render(request, 'view_job.html', context)
+        # else:
+        #     return redirect('/dashboard')
+    else:
         context = {
-            'cur_user': User.objects.get(id = request.session['user_id']),
             'needed_job':Job.objects.get(id = job_id)
         }
         return render(request, 'view_job.html', context)
-    else:
-        return redirect('/dashboard')
 
 
 # CREATE NEW JOB
 def create_new_job(request):
     if request.method == "GET":
         context = {
-            'all_categories': Category.objects.all()
+            'all_categories': Category.objects.all(),
+            'cur_user': User.objects.get(id = request.session['user_id']),
         }
         return render(request, "create_job.html", context)
+
     else:
         errors = Job.objects.job_validator(request.POST)	
         if len(errors)>0:													
@@ -108,18 +129,20 @@ def add_job(request, job_id):
     job.executor = user
     job.save()
     return redirect('/dashboard')
+
 # DONE WITH JOB
 def done_job(request, job_id):
     job = Job.objects.get(id =job_id)
     job.delete()
     return redirect('/dashboard')
+
 # GIVE UP JOB
 def giveup_job(request, job_id):
     user = User.objects.get(id = request.session['user_id'])
     job = Job.objects.get(id =job_id)
     job.executor = None
     job.save()
-    return redirect('/dashboard')
+    return redirect(f'/user/{user.id}/profile')
 
 # EDIT JOB
 def edit_job(request, job_id):
@@ -170,18 +193,20 @@ def remove_category(request, category_id, job_id):
 
 # VIEW USER PROFILE
 def profile(request, user_id):
-    user_prof = User.objects.get(id = user_id)
-    context = {
-        'user_profile': user_prof
-    }
-    return render(request, 'user_profile.html', context)
-    
-# VIEW CURRENT USER's JOBS
-def see_user_jobs(request, user_id):
-    cur_user = User.objects.get(id = user_id)
+    if request.method == 'GET':
+        needed_user = User.objects.get(id = user_id)
+        all_posted_jobs = needed_user.poster.all()
+        all_active_jobs = needed_user.executor.all()
+        context = {
+            'user': needed_user,
+            'all_posted_jobs': all_posted_jobs, 
+            'all_active_jobs': all_active_jobs,
+            'all_jobs' : Job.objects.all().order_by('-created_at')
+        }
+        return render(request, 'user_profile.html', context)
+    else:
+        user_id = request.session['user_id']
+        return redirect(f'/user/{user_id}/profile')
 
-    all_cur_user_jobs = cur_user.executor.all()
-    context = {
-        'all_jobs': all_cur_user_jobs
-    }
-    return render(request, 'users_jobs.html', context) 
+
+

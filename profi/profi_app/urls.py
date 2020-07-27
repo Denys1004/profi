@@ -17,6 +17,5 @@ urlpatterns = [
     path('edit_job/<int:job_id>', views.edit_job),
     path('remove_job/<int:job_id>', views.remove_job),
     path('remove_category/<int:category_id>/<int:job_id>', views.remove_category),
-    path('profile/<int:user_id>', views.profile),
-    path('jobs/<int:user_id>', views.see_user_jobs),
+    path('user/<int:user_id>/profile/', views.profile)
 ]

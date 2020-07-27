@@ -18,74 +18,45 @@
 
 
     <div class="dashboard_page_container">
-
-        <div class="display_flex">
-            <h1>Hello {{ cur_user.first_name }}!</h1>
-            <a class="btn btn-warning" href="/create_new_job">New job</a>
+        <div class="dash">
+            {% if request.session.user_id != null %}
+            <a class="mybutton" href="/create_new_job">Create New job</a>
+            {% endif %}
+            <h1>Dashboard</h1>
+            {% if request.session.user_id == null %}
+            <small>*Please <a href="/login">login</a> to be able use full App</small>
+            <br>
+            {% endif %}
         </div>
-        <hr>
-        <h3>All {{ cur_user.first_name }}'s jobs!</h3>
-        <table class="table table-bordered mt-1">
-            <thead class="thead-dark">
-                <tr>
-                    <th>Job</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for job in all_jobs %}
-                    {% if job.executor != null and job.executor.id == request.session.user_id %}
-                    <!-- if logged user doing this job, display this -->
-                    <tr>
-                        <td>{{ job.title }}</td>
-                        <td>
-                            <a href="view/{{job.id}}">View | </a> 
-                            <a href="done_job/{{job.id}}">Done |</a>  
-                            <a href="giveup_job/{{job.id}}">GiveUp</a>
-                        </td>                        
-                    </tr>
-                    {% endif%}
-                {% endfor %}
-            </tbody>
-        </table>
-        <h3>Everyone's jobs</h3>
-        <table class="table table-bordered mt-1">
-            <thead class="thead-dark">
-                <tr>
-                    <th>Posted</th>
-                    <th>Job</th>
-                    <th>Location</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for job in all_jobs %}
-                    {% if job.executor == null or job.executor.id != request.session.user_id %}
-                    <!-- if nobody does this job or other user doing this job -->
-                    <tr>
-                        <td>{{ job.created_at|date:"SHORT_DATE_FORMAT" }}</td>
-                        <td>{{ job.title }}</td>
-                        <td>{{ job.location }}</td>
-
-                        <td>
-                            <a href="view/{{job.id}}">View |</a>  
+        {% for job in all_jobs %}
+            <!-- if nobody does this job or other user doing this job -->
+            {% if job.executor == null %}
+                <div class="job_container">
+                    <div class="top_desc">
+                        <div class="job_title">
+                            <h5><a href="view/{{job.id}}">{{ job.title|slice:":20" }}...</a></h5>
+                        </div>
+                        <div class="action">
+                            <a href="view/{{job.id}}">View <span class='vertical'>|</span></a> 
+                            {%if job.executor.id == null and request.session.user_id != null %}
+                            <a href="add_job/{{job.id}}">Add <span class='vertical'>|</span></a>
+                            {% endif %}
                             {% if job.poster.id == request.session.user_id %}
-                                <a href="remove_job/{{job.id}}">Remove |</a>  
-                                <a href="edit_job/{{job.id}}">Edit |</a> 
+                                <a href="edit_job/{{job.id}}">Edit <span class='vertical'>|</span></a> 
+                                <a href="remove_job/{{job.id}}">Remove</a> 
                             {% endif %}
-                            {%if job.executor.id == null %}
-                                <a href="add_job/{{job.id}}">Add</a>
-                            {% endif %}
-                        </td>          
-                    </tr>
-                    {% endif %}                       
-                {% endfor %}
-            </tbody>
-        </table>
+                        </div>
+                    </div>
+                    <div class="bottom_desc">
+                        <p>{{ job.description|slice:":280" }}...<a href="view/{{job.id}}">View Job</a></p>
+                        <small>Posted {{ job.created_at|date:"SHORT_DATE_FORMAT" }} by <a href="/user/{{ job.poster.id }}/profile">{{ job.poster.first_name }} {{ job.poster.last_name }}</a></small>
+                    </div>
+                </div>
+                <br>
+            {% endif %} 
+        {% endfor %}
 
         <hr>
-
-        <h3 class="mt-5">Our Users</h3>
         <table class="table table-bordered mt-1">
             <thead class="thead-dark">
                 <tr>

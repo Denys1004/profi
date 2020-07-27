@@ -16,7 +16,69 @@
 <body>
     {% include 'navbar.html' %}
 
-    <h1>{{ user_profile.first_name }}'s profile page</h1>
+
+    
+    <h1>{{ user.first_name }}'s profile page</h1>
+    <p>{{ user.first_name }} {{ user.last_name }}</p>
+    <p>{{ user.email }}</p>
+
+    <!-- For logged in user -->
+    {% if user.id == request.session.user_id %}
+        <h3>All {{ user.first_name }}'s jobs!</h3>
+        <table class="table table-bordered mt-1">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Job</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for job in all_jobs %}
+                    <!-- if logged user doing this job, display this -->
+                    {% if job.executor != null and job.executor.id == request.session.user_id %}
+                    <tr>
+                        <td>{{ job.title }}</td>
+                        <td>
+                            <a href="/view/{{job.id}}">View | </a> 
+                            <a href="/done_job/{{job.id}}">Done |</a>  
+                            <a href="/giveup_job/{{job.id}}">GiveUp</a>
+                        </td>                        
+                    </tr>
+                    {% endif%}
+                {% endfor %}
+            </tbody>
+        </table>
+        <h3>All jobs posted by {{ user.first_name }}</h3>
+        {% for posted_job in all_posted_jobs %}
+        <p>{{ posted_job.title }}</p>
+        <p>{{ posted_job.location }}</p>
+        {% endfor %}
+    {% else %}
+        <h3>All jobs posted by {{ user.first_name }}</h3>
+        {% for posted_job in all_posted_jobs %}
+        <p>{{ posted_job.title }}</p>
+        <p>{{ posted_job.location }}</p>
+        {% endfor %}
+    {% endif %}
+
+
+
+    <!-- {% if user.id == request.session.user_id %}
+        {% if job.executor != null and job.executor.id == request.session.user_id %}
+            <h3>My active jobs</h3>
+            {% for active_job in all_active_jobs %}
+                <p>{{ active_job.title }}</p>
+                <p>{{ active_job.description }}</p>
+                <p>{{ active_job.location }}</p>
+                <a href="/view/{{active_job.id}}">View | </a> 
+                <a href="/done_job/{{active_job.id}}">Done |</a>  
+                <a href="/giveup_job/{{active_job.id}}">GiveUp</a>
+            {% endfor %}
+        {% endif %}
+    {% endif %} -->
+
+    <!-- For all -->
+
 
 
 

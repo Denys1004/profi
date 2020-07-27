@@ -12,6 +12,9 @@ $black: rgb(0, 0, 0);
     list-style: none;
     font-family: Arial, Helvetica, sans-serif;
 }
+body{
+    background-color: $grey;
+}
 
 // NAVIGATION
 // *****************************************************************************************
@@ -33,7 +36,16 @@ $black: rgb(0, 0, 0);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            min-width: 280px;
+            min-width: 300px;
+            a{
+                #initials{
+                    background-color: $red;
+                    border-radius: 50%;
+                    padding: 5px;
+                    text-transform: uppercase;
+                    color: $white;
+                }
+            }
             li{
                 list-style: none;
                 display: inline-block;
@@ -208,9 +220,8 @@ body{
                 width: 120px;
                 &:hover{
                     text-decoration: none;
-                    background-color: $orange;
-                    border: 2px solid $black;
-                    color: $black;
+                    background-color: $red;
+                    color: $white;
                 }
             }
             .find_btn{
@@ -223,9 +234,8 @@ body{
                 width: 120px;
                 &:hover{
                     text-decoration: none;
-                    background-color: $orange;
-                    border: 2px solid $black;
-                    color: $black;
+                    background-color: $white;
+                    color: $red;
                 }
             }
         }
@@ -236,9 +246,10 @@ body{
 // *****************************************************************************************
 main{
     text-align: center;
+    background-color: $white;
     h3{
         font-weight: bold; 
-        margin: 20px 0 30px;
+        padding: 20px;
     }
     #steps_container{
         max-width: 1100px;
@@ -274,7 +285,7 @@ main{
 // *****************************************************************************************
 section{
     background-color: $grey;
-    margin-top: 20px;
+    padding-top: 20px;
     #phone_container{
         display: flex;
         justify-content: space-between;
@@ -339,20 +350,144 @@ footer{
 }
 
 
+
+
+.display_flex1{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    .reset{
+        background-color: $white;
+        border: 2px solid $red;
+        padding: 10px 20px;
+        color: $red;
+        text-align: center;
+        display: block;
+        width: 120px;
+        &:hover{
+            text-decoration: none;
+            background-color: $red;
+            color: $white;
+        }
+    }
+    .add_job_btn{
+        background-color: $red;
+        border: 2px solid $red;
+        padding: 10px 20px;
+        text-align: center;
+        color: $white;
+        display: block;
+        width: 120px;
+        &:hover{
+            text-decoration: none;
+            background-color: $white;
+            color: $red;
+        }
+    }
+
+}
+
+
+
 .errors{
     color: rgb(255, 0, 0);
 }
 
+// DASHBOARD PAGE
 .dashboard_page_container{
     max-width: 1000px;
     margin: 0 auto;
+    padding: 10px;
+    .dash{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+        .mybutton{
+            width: 30%;
+            min-width: 200px;
+            padding: 10px 20px;
+            text-align: center;
+            flex: 0.2;
+            margin: 20px;
+            background-color: $white;
+            border: 2px solid $red;
+            color: $red;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    }
+    .job_container{
+        border: 2px solid $grey;
+        background-color: $white;
+        .top_desc{
+            padding: 5px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .job_title{
+                h5{
+                    margin: 0;
+                    a{
+                        color: $black;
+                    }
+                }
+            }
+            .action{
+                a{
+                    color: $red;
+                }
+            }
+        }
+        .bottom_desc{
+            padding: 0 15px;
+            background-color: $white;
+        }
+    }
 }
 
 // MEDIA SCREEN
 // *****************************************************************************************
 
+// DASHBOARD PAGE
+@media screen and (max-width:600px){
+    .dashboard_page_container{
+        .job_container{
+            .top_desc{
+                padding: 4px 10px;
+                .job_title{
+                    h5{
+                        font-size: 16px;
+                    }
+                }
+                .action{
+                    a{
+                        font-size: 13px;
+                    }
+                }
+            }
+            .bottom_desc{
+                font-size: 14px;
+                padding: 0 10px;
+            }
+        }
+    }
+}
+
+.vertical{
+    color: $black;
+}
+
+
+
+
+
+
+
+
 // Navigation
-@media screen and (max-width:690px){
+@media screen and (max-width:720px){
     .nav-container{
         text-align: start;
         nav{

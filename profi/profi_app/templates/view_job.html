@@ -20,9 +20,12 @@
     <div class="success_page_container">
         <div class="page_container">
             <div class="display_flex">
+                {% if request.session.user_id != null %}
                 <h1>Hello {{ cur_user.first_name }}! These are the job details!</h1>
-                <a href="/logout">Logout</a>
-                <a href="/dashboard">Dashboard</a>
+                {% else %}
+                <h1>These are the job details!</h1>
+                {% endif %}
+                <a href="/dashboard">Back to Dashboard</a>
             </div>
             <hr>
             <h2>{{needed_job.title}}</h2>    
@@ -35,12 +38,13 @@
             </p>  
 
 
-
-            {%if needed_job.executor.id == null %}
-            <a class='btn btn-warning' href="/add_job/{{needed_job.id}}">Add to my list</h3></a>
-            {% endif %}
-            {% if needed_job.executor != null and needed_job.executor.id == request.session.user_id %}
-            <a class='btn btn-warning' href="/giveup_job/{{needed_job.id}}">Give up this job</a>
+            {% if request.session.user_id != null %}
+                {%if needed_job.executor.id == null %}
+                <a class='btn btn-warning' href="/add_job/{{needed_job.id}}">Add to my list</h3></a>
+                {% endif %}
+                {% if needed_job.executor != null and needed_job.executor.id == request.session.user_id %}
+                <a class='btn btn-warning' href="/giveup_job/{{needed_job.id}}">Give up this job</a>
+                {% endif %}
             {% endif %}
 
         </div>
