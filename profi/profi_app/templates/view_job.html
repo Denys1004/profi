@@ -30,6 +30,7 @@
             <hr>
             <h2>{{needed_job.title}}</h2>    
             <p>{{needed_job.description}}</p>
+            <p>Location: {{needed_job.location}}</p>
             <p>Posted by <a href="/user/{{needed_job.poster.id}}/profile">{{needed_job.poster.first_name}}</a>, {{needed_job.created_at}}</p>
             <p>Categories: 
                 {% for category in needed_job.categories.all %}
@@ -67,7 +68,7 @@
         <div class="comment_container">
             <p class="comment_p">{{comment.comment}}</p>
             <div class="posted_info">
-                <p class="postedby">{{comment.poster.first_name}} {{comment.poster.last_name}}, at {{comment.created_at}}</p>
+                <p class="postedby"><a href="/user/{{comment.poster.id}}/profile">{{comment.poster.first_name}} {{comment.poster.last_name}}</a>, at {{comment.created_at}}</p>
             </div>
         </div>
         <hr>

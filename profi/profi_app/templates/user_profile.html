@@ -20,8 +20,10 @@
             <h1 id="profile_initial">{{ initials }}</h1>
             <div class="personal_info">
                 <h3>{{ user.first_name }} {{ user.last_name }}</h3>
-                <p>{{ user.email }}</p>
-                <p id="dob"> DOB: {{ user.birth_date|date:'Y/m/d' }}</p>
+                {% if request.session.user_id != null %}
+                    <p>{{ user.email }}</p>
+                    <p id="dob"> DOB: {{ user.birth_date|date:'Y/m/d' }}</p>
+                {% endif %}
             </div>
         </div>
         
@@ -59,10 +61,10 @@
                     <p>{{ posted_job.title }}</p>
                     <small>{{ posted_job.location }}</small> <br>
                     <small>Posted {{ posted_job.created_at|date:'Y/m/d'}}</small>
-                    {% if len.posted_job.comments.all > 0 %}
-                        {% for comment in posted_job.comments.all %}
-                            <small class="green"><a href="/view/{{posted_job.id}}">Comments {{ comment.count }}</a></small>
-                        {% endfor %}
+                    {% if posted_job.comments.count > 0 %}
+                    <div class="comments_count_container">
+                        <small class="comments_count"><a href="/view/{{posted_job.id}}">Comments: {{posted_job.comments.count}}</a></small>
+                    </div>
                     {% endif %}
                 </div>
 

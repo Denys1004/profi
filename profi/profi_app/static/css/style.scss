@@ -23,6 +23,15 @@ body{
     color: rgb(255, 0, 0);
 }
 
+.comments_count_container{
+    .comments_count{
+        a{
+            color: green;
+            font-weight: bold;
+            font-style: italic;
+        }
+    }
+}
 // NAVIGATION
 .nav-container{
     padding: 0 20px;
@@ -48,6 +57,7 @@ body{
                         background-color: $red;
                         border-radius: 50%;
                         padding: 6px;
+                        min-width: 35px;
                         text-transform: uppercase;
                         color: $white;
                     }
@@ -137,11 +147,14 @@ body{
         text-align: center;
 
         #initials_logo{
-            display: block;
             a{
+                display: block;
                 background-color: $red;
                 border-radius: 50%;
                 padding: 18px 12px;
+                margin: auto;
+                min-width: 80px;
+                max-width: 80px;
                 font-size: 30px;
                 text-transform: uppercase;
                 color: $white;
@@ -283,6 +296,10 @@ main{
             h4{
                 font-weight: bold; 
                 margin-top: 10px;
+                color: $black;
+                a{
+                    color: $black;
+                }
             }
             p{
                 .desc_span{
@@ -375,6 +392,9 @@ section{
         .bottom_desc{
             padding: 0 15px;
             background-color: $white;
+            p{
+                margin-bottom: 0rem;
+            }
         }
     }
 }
@@ -389,12 +409,12 @@ section{
     justify-content: space-between;
     #profile_initial{
         display: inline-block;
-        font-size: 54px;
-        width: 100px;
-        padding: 13px 8px 13px 10px;
-        color: $darkgrey;
-        border-radius: 50%;
-        border: 4px solid $darkgrey;
+        font-size: 80px;
+        // width: 100px;
+        // padding: 16px 12px 16px 8px;
+        color: $red;
+        // border-radius: 50%;
+        // border: 4px solid $darkgrey;
     }
     .personal_info{
         text-align: right;

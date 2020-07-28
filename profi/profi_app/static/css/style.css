@@ -20,6 +20,12 @@ body {
   color: red;
 }
 
+.comments_count_container .comments_count a {
+  color: green;
+  font-weight: bold;
+  font-style: italic;
+}
+
 .nav-container {
   padding: 0 20px;
   background-color: #fff;
@@ -60,6 +66,7 @@ body {
   background-color: #b0242e;
   border-radius: 50%;
   padding: 6px;
+  min-width: 35px;
   text-transform: uppercase;
   color: #fff;
 }
@@ -177,14 +184,14 @@ body .nav-links {
   text-align: center;
 }
 
-body .nav-links #initials_logo {
-  display: block;
-}
-
 body .nav-links #initials_logo a {
+  display: block;
   background-color: #b0242e;
   border-radius: 50%;
   padding: 18px 12px;
+  margin: auto;
+  min-width: 80px;
+  max-width: 80px;
   font-size: 30px;
   text-transform: uppercase;
   color: #fff;
@@ -369,6 +376,11 @@ main #steps_container .descripion_container img {
 main #steps_container .descripion_container h4 {
   font-weight: bold;
   margin-top: 10px;
+  color: black;
+}
+
+main #steps_container .descripion_container h4 a {
+  color: black;
 }
 
 main #steps_container .descripion_container p .desc_span {
@@ -493,6 +505,10 @@ section #phone_container .phone_image img {
   background-color: #fff;
 }
 
+.dashboard_page_container .job_container .bottom_desc p {
+  margin-bottom: 0rem;
+}
+
 #profile_header {
   padding: 10px 0;
   display: -webkit-box;
@@ -508,12 +524,8 @@ section #phone_container .phone_image img {
 
 #profile_header #profile_initial {
   display: inline-block;
-  font-size: 54px;
-  width: 100px;
-  padding: 13px 8px 13px 10px;
-  color: #a0a0a0;
-  border-radius: 50%;
-  border: 4px solid #a0a0a0;
+  font-size: 80px;
+  color: #b0242e;
 }
 
 #profile_header .personal_info {

@@ -39,9 +39,9 @@
             <ul class="nav-links">
                 
                 {% if request.session.user_id != null %}
-                <li id="initials_logo">
+                <div id="initials_logo">
                     <a href="/user/{{ request.session.user_id }}/profile">{{ request.session.initials }}</a>
-                </li>
+                </div>
                 {% endif %}
                
 
