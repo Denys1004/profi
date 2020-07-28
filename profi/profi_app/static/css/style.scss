@@ -1,6 +1,6 @@
 $white: #fff;
-$grey: rgb(225, 225, 225);
-$darkgrey: rgb(175, 175, 175);
+$grey: rgb(237, 237, 237);
+$darkgrey: rgb(160, 160, 160);
 $red: #b0242e;
 $orange: #f5b30c;
 $black: rgb(0, 0, 0);
@@ -29,40 +29,42 @@ body{
     background-color: $white;
     height: 8vh;
     text-align: center;
-    // border-bottom: 1px solid $grey;
     nav{
         display: flex;
         justify-content: space-between;
         align-items: center;
         height: 8vh;
-        .contact_container{
-            margin-bottom: 0;
-            color: $black;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            min-width: 500px;
-            max-width: 520px;
-            a{
-                #initials{
-                    background-color: $red;
-                    border-radius: 50%;
-                    padding: 6px;
-                    text-transform: uppercase;
-                    color: $white;
-                }
-            }
-            li{
-                list-style: none;
-                display: inline-block;
+        #menu_container{
+            .menu_list_container{
+                margin-bottom: 0;
+                color: $black;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                min-width: 500px;
+                max-width: 520px;
                 a{
-                    color: $black;
+                    #initials{
+                        background-color: $red;
+                        border-radius: 50%;
+                        padding: 6px;
+                        text-transform: uppercase;
+                        color: $white;
+                    }
                 }
-                .login_a{
-                    color: $darkgrey;
+                li{
+                    list-style: none;
+                    display: inline-block;
+                    a{
+                        color: $black;
+                    }
+                    .login_a{
+                        color: $darkgrey;
+                    }
                 }
             }
         }
+
         #logo_container{
             a{
                 color: $black;
@@ -83,33 +85,38 @@ body{
                 }
             }
         }
-        /* BURGER LINES */
-        .burger{
-            cursor: pointer;
-            width: 24px;
-            min-width: 230px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            .line1, .line2, .line3 {
-                width: 25px;
-                height: 2px;
-                background-color: $black;
-                margin: 3px 0px;
-                border-radius: 2px;
-                transition: all 0.4s ease;
-                align-items: right;
+
+        #burger_container{
+            display: none;
+            /* BURGER LINES */
+            .burger{
+                cursor: pointer;
+                width: 24px;
+                min-width: 230px;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                .line1, .line2, .line3 {
+                    width: 25px;
+                    height: 2px;
+                    background-color: $black;
+                    margin: 3px 0px;
+                    border-radius: 2px;
+                    transition: all 0.4s ease;
+                    align-items: right;
+                }
             }
-        }
-        /* CHANGING BURGER TO CROSS */
-        .toggle .line1{
-            transform: rotate(-45deg) translate(-5px, 7px);
-        }
-        .toggle .line2{
-            opacity: 0;
-        }
-        .toggle .line3{
-            transform: rotate(45deg) translate(-4px, -7px);
+            /* CHANGING BURGER TO CROSS */
+            .toggle .line1{
+                transform: rotate(-45deg) translate(-5px, 7px);
+            }
+            .toggle .line2{
+                opacity: 0;
+            }
+            .toggle .line3{
+                transform: rotate(45deg) translate(-4px, -7px);
+            }
+
         }
     }
 }
@@ -127,27 +134,22 @@ body{
         flex-direction: column;
         transform: translateX(100%);
         transition: transform 0.5s ease-in;
-        #nav_logo{
-            margin: 20px 0;
+        text-align: center;
+
+        #initials_logo{
+            display: block;
             a{
-                color: $black;
-                &:hover{
-                    text-decoration: none;
-                }
-                ion-icon {
-                    color: $red;
-                    font-size: 27px;
-                    margin-bottom: -5px;
-                }
-                h4{
-                    color: $black;
-                    text-transform: uppercase;
-                    margin-bottom: 0;
-                    font-family: 'Righteous', cursive;
-                    letter-spacing: 2px;
-                }
+                background-color: $red;
+                border-radius: 50%;
+                padding: 18px 12px;
+                font-size: 30px;
+                text-transform: uppercase;
+                color: $white;
             }
         }
+
+
+
         li{
             opacity: 0;
             padding: 20px 0px;
@@ -155,9 +157,6 @@ body{
                 color: $black;
                 letter-spacing: 2px;
                 margin-top: 20px;
-                // &:hover{
-                //     color: orange;
-                // }
             }
         }   
     }
@@ -466,6 +465,18 @@ section{
     color: $darkgrey;
 }
 
+.comment_p{
+    color: rgb(14, 160, 26);
+    font-weight: bold;
+    font-size: 20px;
+    font-style: italic;
+    margin-bottom: 0;
+}
+.posted_info{
+    color: $darkgrey;
+    font-style: italic;
+}
+
 // CREATE JOB PAGE
 // *****************************************************************************************
 .page_container{
@@ -549,13 +560,15 @@ section{
 // Navigation
 @media screen and (max-width:750px){
     .nav-container{
-        text-align: start;
+        text-align: center;
         nav{
-            .contact_container{
+            #menu_container{
                 display: none;
             }
+
             #logo_container{
                 flex:2;
+                text-align: left;
                 ion-icon {
                     color: $red;
                     font-size: 27px;
@@ -570,9 +583,14 @@ section{
                     letter-spacing: 2px;
                 }
             }
-            .burger{
-                min-width: 30px;
+            #burger_container{
+                display: block;
+                text-align: right;
+                .burger{
+                    min-width: 30px;
+                }
             }
+
 
             .nav-links{
                 text-align: center;
@@ -811,7 +829,16 @@ section{
     }
 }
 
+// ALL USERS PAGE
+@media screen and (max-width:480px){
+    table{
+        font-size: 0.8rem;
+        .display_none{
+            display: none;
+        }
+    }
 
+}
 
 // PROFILE PAGE
 @media screen and (max-width:480px){
@@ -824,6 +851,7 @@ section{
     }
     h3{
         text-align: center;
+        font-size: 20px;
     }
     .posted_job_container{
         border: 2px solid $grey;
@@ -835,12 +863,14 @@ section{
             width: 50%;
             p{
                 margin: 0;
+                font-size: 0.8rem;
+                font-weight: bold;
             }
         }
         .action{
             text-align: right;
             a{
-                color: $red;
+                font-size: 0.8rem;
             }
         }
     }

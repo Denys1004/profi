@@ -94,8 +94,17 @@ class Job(models.Model):
     updated_at = models.DateTimeField(auto_now = True)	
     objects = JobManager()
     #categories
+    #comments
 class Category(models.Model):
     name = models.CharField(max_length = 255)
     job = models.ManyToManyField(Job, related_name = 'categories')
+    created_at = models.DateTimeField(auto_now_add = True)  								
+    updated_at = models.DateTimeField(auto_now = True)	
+
+
+class Comment(models.Model):
+    comment = models.TextField(default = 'Hello')
+    poster = models.ForeignKey(User, related_name = 'comments', on_delete=models.CASCADE) # Comments has a poster, User has comments
+    job = models.ForeignKey(Job, related_name = 'comments', on_delete=models.CASCADE) # message where comment was posted on. Message has comments, but comment belongs to one message 
     created_at = models.DateTimeField(auto_now_add = True)  								
     updated_at = models.DateTimeField(auto_now = True)	

@@ -48,7 +48,38 @@
             {% endif %}
 
         </div>
+
+
     </div>
+
+    <!-- ADD COMMENT -->
+    {% if request.session.user_id != null %}
+    <div class="page_container">
+        <form action="/add_comment/{{needed_job.id}}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <textarea  class="form-control" name="comment" id="comment"></textarea>
+            </div>
+            <button class = 'btn btn-secondary'>Add Comment</button>
+        </form>
+    
+        {% for comment in needed_job.comments.all %}
+        <div class="comment_container">
+            <p class="comment_p">{{comment.comment}}</p>
+            <div class="posted_info">
+                <p class="postedby">{{comment.poster.first_name}} {{comment.poster.last_name}}, at {{comment.created_at}}</p>
+            </div>
+        </div>
+        <hr>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="page_container">
+        <small>*Please <a href="/login">login</a> to be able use full App</small>
+    </div>
+    {% endif %}
+
+
 
 
     {% include 'footer.html' %}

@@ -22,7 +22,7 @@
                 <tr>
                     <th>User</th>
                     <th>Email</th>
-                    <th>Posted jobs</th>
+                    <th class="display_none">Posted jobs</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,7 +30,7 @@
                 <tr>
                     <td id="user_name"> <a href='user/{{ user.id }}/profile'>{{ user.first_name }} {{user.last_name}}</a></td>
                     <td>{{ user.email }}</td>
-                    <td>{{ user.poster.count }}</a></td>
+                    <td class="display_none">{{ user.poster.count }}</a></td>
                 </tr>
                 {% endfor %}
             </tbody>

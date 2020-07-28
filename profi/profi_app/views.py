@@ -52,11 +52,14 @@ def login(request):
     if request.method == "GET":
         if 'first_name' in request.session:
             request.session.clear()
-        return render(request, "login.html")
+            return render(request, "login.html")
+        else:
+            return render(request, "login.html")
     else:
         result = User.objects.authenticate(request.POST['email'],request.POST['password']) # Checking login
         if result == False:
             messages.error(request, "Email or passwort do not match.")
+            return redirect('/login')
         else:
             user = User.objects.get(email = request.POST['email'])
             request.session['user_id'] = user.id
@@ -65,6 +68,7 @@ def login(request):
             initials = first_i + last_i
             request.session['initials'] = initials
             return redirect('/')
+        
 
 
 # LOGOUT
@@ -81,8 +85,8 @@ def view_job(request, job_id):
                 'needed_job':Job.objects.get(id = job_id)
             }
             return render(request, 'view_job.html', context)
-        # else:
-        #     return redirect('/dashboard')
+        else:
+            return redirect('/dashboard')
     else:
         context = {
             'needed_job':Job.objects.get(id = job_id)
@@ -220,3 +224,12 @@ def all_users(request):
     }
     return render(request, 'all_users.html', context)
 
+
+
+def add_comment(request, job_id):
+    if request.method == "POST":
+        new_comment = Comment.objects.create(comment = request.POST['comment'], poster = User.objects.get(id = request.session['user_id']), job = Job.objects.get(id = job_id))
+        print("COMMENT", new_comment)
+        return redirect(f'/view/{job_id}')
+    print("COMMENT OUTSIDE", new_comment)
+    return redirect('/dashboard')

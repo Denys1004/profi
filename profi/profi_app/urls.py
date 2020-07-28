@@ -20,5 +20,8 @@ urlpatterns = [
     path('view/<int:job_id>', views.view_job),
     path('edit_job/<int:job_id>', views.edit_job),
     path('remove_job/<int:job_id>', views.remove_job),
-    path('remove_category/<int:category_id>/<int:job_id>', views.remove_category)
+    path('remove_category/<int:category_id>/<int:job_id>', views.remove_category),
+
+
+    path('add_comment/<int:job_id>', views.add_comment)
 ]

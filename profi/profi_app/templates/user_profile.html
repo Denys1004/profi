@@ -59,6 +59,11 @@
                     <p>{{ posted_job.title }}</p>
                     <small>{{ posted_job.location }}</small> <br>
                     <small>Posted {{ posted_job.created_at|date:'Y/m/d'}}</small>
+                    {% if len.posted_job.comments.all > 0 %}
+                        {% for comment in posted_job.comments.all %}
+                            <small class="green"><a href="/view/{{posted_job.id}}">Comments {{ comment.count }}</a></small>
+                        {% endfor %}
+                    {% endif %}
                 </div>
 
                 <div class="action">
