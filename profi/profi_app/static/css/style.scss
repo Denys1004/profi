@@ -4,7 +4,7 @@ $darkgrey: rgb(160, 160, 160);
 $red: #b0242e;
 $orange: #f5b30c;
 $black: rgb(0, 0, 0);
-
+$blue: #007bff;
 *{
     margin: 0px;
     padding: 0px;
@@ -26,7 +26,7 @@ body{
 .comments_count_container{
     .comments_count{
         a{
-            color: green;
+            color: $blue;
             font-weight: bold;
             font-style: italic;
         }
@@ -367,33 +367,38 @@ section{
             text-transform: uppercase;
         }
     }
-    .job_container{
-        border: 2px solid $grey;
-        background-color: $white;
-        .top_desc{
-            padding: 5px 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            .job_title{
-                h5{
-                    margin: 0;
+    #display_jobs{
+        overflow-x: hidden;
+        overflow-y: auto;
+        max-height: 70vh;
+        .job_container{
+            border: 2px solid $grey;
+            background-color: $white;
+            .top_desc{
+                padding: 5px 15px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .job_title{
+                    h5{
+                        margin: 0;
+                        a{
+                            color: $black;
+                        }
+                    }
+                }
+                .action{
                     a{
-                        color: $black;
+                        color: $red;
                     }
                 }
             }
-            .action{
-                a{
-                    color: $red;
+            .bottom_desc{
+                padding: 0 15px;
+                background-color: $white;
+                p{
+                    margin-bottom: 0rem;
                 }
-            }
-        }
-        .bottom_desc{
-            padding: 0 15px;
-            background-color: $white;
-            p{
-                margin-bottom: 0rem;
             }
         }
     }
@@ -410,11 +415,7 @@ section{
     #profile_initial{
         display: inline-block;
         font-size: 80px;
-        // width: 100px;
-        // padding: 16px 12px 16px 8px;
         color: $red;
-        // border-radius: 50%;
-        // border: 4px solid $darkgrey;
     }
     .personal_info{
         text-align: right;
@@ -427,6 +428,7 @@ section{
 }
 .table-bordered{
     border: 1px solid $black;
+    background-color: $white;
     .thead-dark{
         text-align: center;
     }
@@ -436,6 +438,7 @@ section{
             width: 80%;
             p{
                 font-weight: bold;
+                margin-bottom: 0rem;
             }
         }
         .td_action{
@@ -467,6 +470,10 @@ section{
 
 // VIEW JOB PAGE
 // *****************************************************************************************
+#job_details{
+    font-size: 24px;
+    font-weight: bold;
+}
 .mybutton2{
     min-width: 100px;
     padding: 10px 20px;
@@ -481,20 +488,39 @@ section{
         text-decoration: none;
     }
 }
+.mybutton3{
+    min-width: 100px;
+    padding: 10px 20px;
+    text-align: center;
+    background-color: $red;
+    border: 2px solid $red;
+    color: $white;
+    margin-bottom: 10px;
+    &:hover{
+        background-color: $white;
+        border: 2px solid $red;
+        color: $red;
+        text-decoration: none;
+    }
+}
 .cat_desc{
     color: $darkgrey;
 }
 
 .comment_p{
-    color: rgb(14, 160, 26);
-    font-weight: bold;
-    font-size: 20px;
+    color: $black;
+    // font-weight: bold;
+    font-size: 16px;
     font-style: italic;
     margin-bottom: 0;
+    padding-top: 10px;
 }
 .posted_info{
     color: $darkgrey;
     font-style: italic;
+    .postedby{
+        font-size: 13px;
+    }
 }
 
 // CREATE JOB PAGE

@@ -21,14 +21,14 @@
         <div class="page_container">
             <div class="display_flex">
                 {% if request.session.user_id != null %}
-                <h1>Hello {{ cur_user.first_name }}! These are the job details!</h1>
+                <h1 id='job_details'>Hello {{ cur_user.first_name }}! These are the job details!</h1>
                 {% else %}
                 <h1>These are the job details!</h1>
                 {% endif %}
                 <a href="/dashboard">Back to Dashboard</a>
             </div>
             <hr>
-            <h2>{{needed_job.title}}</h2>    
+            <h4>{{needed_job.title}}</h4>    
             <p>{{needed_job.description}}</p>
             <p>Location: {{needed_job.location}}</p>
             <p>Posted by <a href="/user/{{needed_job.poster.id}}/profile">{{needed_job.poster.first_name}}</a>, {{needed_job.created_at}}</p>
@@ -61,7 +61,7 @@
             <div class="form-group">
                 <textarea  class="form-control" name="comment" id="comment"></textarea>
             </div>
-            <button class = 'btn btn-secondary'>Add Comment</button>
+            <button class='mybutton3'>Add Comment</button>
         </form>
     
         {% for comment in needed_job.comments.all %}

@@ -42,11 +42,21 @@
                         <!-- if logged user doing this job, display this -->
                         {% if job.executor != null and job.executor.id == request.session.user_id %}
                         <tr>
-                            <td class="td_job"> <p>{{ job.title }}</p> <small>{{ job.description|slice:":290" }}</small><a href="/view/{{job.id}}">...View</a></td>
+                            <td class="td_job">
+                                <p>{{ job.title }}</p> 
+                                <small>{{ job.description|slice:":290" }}</small>
+                                <a href="/view/{{job.id}}">...View</a>
+                                {% if job.comments.count > 0 %}
+                                <div class="comments_count_container">
+                                    <small class="comments_count"><a href="/view/{{job.id}}">Comments: {{job.comments.count}}</a></small>
+                                </div>
+                                {% endif %}
+                            </td>
                             <td class="td_action">
                                 <!-- <a href="/view/{{job.id}}">View | </a>  -->
                                 <a href="/done_job/{{job.id}}">Done <span class='vertical'>|</span></a>  
                                 <a href="/giveup_job/{{job.id}}">GiveUp</a>
+
                             </td>                      
                         </tr>
                         {% endif%}

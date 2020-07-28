@@ -21,7 +21,7 @@ body {
 }
 
 .comments_count_container .comments_count a {
-  color: green;
+  color: #007bff;
   font-weight: bold;
   font-style: italic;
 }
@@ -470,12 +470,18 @@ section #phone_container .phone_image img {
   text-transform: uppercase;
 }
 
-.dashboard_page_container .job_container {
+.dashboard_page_container #display_jobs {
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 70vh;
+}
+
+.dashboard_page_container #display_jobs .job_container {
   border: 2px solid #ededed;
   background-color: #fff;
 }
 
-.dashboard_page_container .job_container .top_desc {
+.dashboard_page_container #display_jobs .job_container .top_desc {
   padding: 5px 15px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -488,24 +494,24 @@ section #phone_container .phone_image img {
           align-items: center;
 }
 
-.dashboard_page_container .job_container .top_desc .job_title h5 {
+.dashboard_page_container #display_jobs .job_container .top_desc .job_title h5 {
   margin: 0;
 }
 
-.dashboard_page_container .job_container .top_desc .job_title h5 a {
+.dashboard_page_container #display_jobs .job_container .top_desc .job_title h5 a {
   color: black;
 }
 
-.dashboard_page_container .job_container .top_desc .action a {
+.dashboard_page_container #display_jobs .job_container .top_desc .action a {
   color: #b0242e;
 }
 
-.dashboard_page_container .job_container .bottom_desc {
+.dashboard_page_container #display_jobs .job_container .bottom_desc {
   padding: 0 15px;
   background-color: #fff;
 }
 
-.dashboard_page_container .job_container .bottom_desc p {
+.dashboard_page_container #display_jobs .job_container .bottom_desc p {
   margin-bottom: 0rem;
 }
 
@@ -540,6 +546,7 @@ section #phone_container .phone_image img {
 
 .table-bordered {
   border: 1px solid black;
+  background-color: #fff;
 }
 
 .table-bordered .thead-dark {
@@ -552,6 +559,7 @@ section #phone_container .phone_image img {
 
 .table-bordered tbody .td_job p {
   font-weight: bold;
+  margin-bottom: 0rem;
 }
 
 .table-bordered tbody .td_action {
@@ -584,6 +592,11 @@ section #phone_container .phone_image img {
   color: #b0242e;
 }
 
+#job_details {
+  font-size: 24px;
+  font-weight: bold;
+}
+
 .mybutton2 {
   min-width: 100px;
   padding: 10px 20px;
@@ -600,21 +613,42 @@ section #phone_container .phone_image img {
   text-decoration: none;
 }
 
+.mybutton3 {
+  min-width: 100px;
+  padding: 10px 20px;
+  text-align: center;
+  background-color: #b0242e;
+  border: 2px solid #b0242e;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.mybutton3:hover {
+  background-color: #fff;
+  border: 2px solid #b0242e;
+  color: #b0242e;
+  text-decoration: none;
+}
+
 .cat_desc {
   color: #a0a0a0;
 }
 
 .comment_p {
-  color: #0ea01a;
-  font-weight: bold;
-  font-size: 20px;
+  color: black;
+  font-size: 16px;
   font-style: italic;
   margin-bottom: 0;
+  padding-top: 10px;
 }
 
 .posted_info {
   color: #a0a0a0;
   font-style: italic;
+}
+
+.posted_info .postedby {
+  font-size: 13px;
 }
 
 .page_container {

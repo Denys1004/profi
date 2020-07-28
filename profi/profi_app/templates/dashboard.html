@@ -28,6 +28,8 @@
             <br>
             {% endif %}
         </div>
+
+        <div id="display_jobs">
         {% for job in all_jobs %}
             <!-- if nobody does this job -->
             {% if job.executor == null %}
@@ -59,11 +61,12 @@
                             {% endif %}
                         {% endif %}
                     </div>
-
                 </div>
                 <br>
             {% endif %} 
         {% endfor %}
+        </div>
+        
     </div>
     
 
