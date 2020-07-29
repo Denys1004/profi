@@ -20,6 +20,40 @@ body {
   color: red;
 }
 
+.succsess_messages {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  color: #06c416;
+  width: 100%;
+  margin: auto;
+  background-color: #cbe6cd;
+  border-radius: 6px;
+  padding: 6px 20px;
+  margin-bottom: 10px;
+}
+
+.succsess_messages .success {
+  color: #06c416;
+  text-align: left;
+  margin-bottom: 0;
+}
+
+.succsess_messages a {
+  color: #06c416;
+  text-align: right;
+}
+
+.active {
+  font-weight: bold;
+}
+
 .comments_count_container .comments_count a {
   color: #007bff;
   font-weight: bold;
@@ -76,8 +110,16 @@ body {
   display: inline-block;
 }
 
+.nav-container nav #menu_container .menu_list_container li:visited {
+  font-weight: bold;
+}
+
 .nav-container nav #menu_container .menu_list_container li a {
   color: black;
+}
+
+.nav-container nav #menu_container .menu_list_container li a:visited {
+  font-weight: bold;
 }
 
 .nav-container nav #menu_container .menu_list_container li .login_a {
@@ -644,7 +686,6 @@ section #phone_container .phone_image img {
 
 .posted_info {
   color: #a0a0a0;
-  font-style: italic;
 }
 
 .posted_info .postedby {
@@ -730,7 +771,13 @@ section #phone_container .phone_image img {
   text-align: center;
 }
 
-.all_users_page_container #user_name {
+.all_users_page_container #all_users_display {
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 70vh;
+}
+
+.all_users_page_container #all_users_display #user_name {
   text-align: left;
 }
 

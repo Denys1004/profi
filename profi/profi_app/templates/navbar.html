@@ -6,7 +6,7 @@
                 {% if request.session.user_id != null %}
                 <a href="/user/{{ request.session.user_id }}/profile"><li id="initials">{{ request.session.initials }}</li></a>
                 {% endif %}
-                <li><a href="/">Home</a></li>
+                <li><a class="" href="/">Home</a></li>
                 <li><a href="/dashboard">Dashboard</a></li>
                 {% if request.session.user_id != null %}
                 <li><a href="/create_new_job">Create job</a></li>

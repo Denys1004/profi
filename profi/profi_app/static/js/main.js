@@ -39,3 +39,7 @@ $(window).scroll(function() {
         $('#scroll-arrow').stop(true, true).fadeOut();
     }
 });
+
+
+
+$('.alert').alert()

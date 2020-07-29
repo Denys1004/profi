@@ -123,7 +123,7 @@ def create_new_job(request):
             cur_category = Category.objects.create(name = request.POST['other'])
             this_job.categories.add(cur_category)
             this_job.save()
-
+        messages.success(request, "Job Successfully Created!")
         return redirect('/dashboard')
 
 # ADD JOB TO USER
@@ -132,6 +132,7 @@ def add_job(request, job_id):
     job = Job.objects.get(id =job_id)
     job.executor = user
     job.save()
+    messages.success(request, "Job successfully added to your active jobs!")
     return redirect(f'/user/{user.id}/profile')
 
 # DONE WITH JOB
@@ -146,6 +147,7 @@ def giveup_job(request, job_id):
     job = Job.objects.get(id =job_id)
     job.executor = None
     job.save()
+    messages.success(request, "You succesfully gave up this job!")
     return redirect(f'/user/{user.id}/profile')
 
 # EDIT JOB
@@ -175,6 +177,7 @@ def edit_job(request, job_id):
                 edited_job.categories.add(needed_category)
                 edited_job.save()
         edited_job.save()
+        messages.success(request, "Job Successfully Updated!")
         return redirect('/dashboard')
 
 # REMOVE JOB
@@ -182,6 +185,7 @@ def remove_job(request, job_id):
     job = Job.objects.get(id =job_id)
     if job.poster.id == request.session['user_id']:
         job.delete()
+    messages.success(request, "Job removed from table!")
     return redirect('/dashboard')
 
 # REMOVE CATEGORY
@@ -208,8 +212,7 @@ def profile(request, user_id):
             'user': needed_user,
             'initials': initials,
             'all_posted_jobs': all_posted_jobs, 
-            'all_active_jobs': all_active_jobs,
-            'all_jobs' : Job.objects.all().order_by('-created_at')
+            'all_active_jobs': all_active_jobs
         }
         return render(request, 'user_profile.html', context)  
     else:

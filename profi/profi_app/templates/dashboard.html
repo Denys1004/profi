@@ -29,6 +29,17 @@
             {% endif %}
         </div>
 
+        {% if messages %}     
+            {% for message in messages %}                                                            				 	
+            <div class="succsess_messages">
+                <p class="success">{{ message }}</p>
+                <a href="/dashboard">x</a>      									                                            								
+            </div> 
+            {% endfor %}                                                      									
+        {% endif %} 
+
+
+        
         <div id="display_jobs">
         {% for job in all_jobs %}
             <!-- if nobody does this job -->
