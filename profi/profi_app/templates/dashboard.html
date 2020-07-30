@@ -1,23 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
-    <title>Home</title>
-    <link href="https://fonts.googleapis.com/css2?family=Trade+Winds&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <script defer src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-    <script defer src="{% static 'js/main.js' %}"></script>
+    {% include 'head.html' %}
+
+    <title>Dashboard</title>
 </head>
 <body>
     {% include 'navbar.html' %}
 
-
+    
     <div class="dashboard_page_container">
         <div class="dash">
             {% if request.session.user_id != null %}
@@ -39,6 +30,25 @@
             {% endfor %}                                                      									
         {% endif %} 
 
+        <div class="sort_container">
+            <form class='sort' action="/dashboard" method="post">
+                {% csrf_token %}
+                <div class="input_field">
+                    <label for='category'>Show only: </label>
+                    <select id="category" name="category">
+                        {% for category in all_categories %}
+                        <option value="{{ category.name }}">{{ category.name }}</option>
+                        {% endfor %}
+                        <option value="all">All</option>
+                    </select>
+                </div>
+                <button class="mybutton4">Sort</button>
+                
+            </form>
+            <a href="/dashboard" class="mybutton5">Show All</a>
+        </div>
+
+
         <div class="pagination_container">
             <!-- this link need for << >> symbols -->
             <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> -->
@@ -51,7 +61,7 @@
                 {% for num in jobs.paginator.page_range %} 	
                     {% if jobs.number == num %}
                         <strong>{{ num }}</strong>											
-                    {% elif num > jobs.number|add:'-3' and num < jobs.number|add:'3' %}					
+                    {% elif num > jobs.number|add:'-2' and num < jobs.number|add:'2' %}					
                         <a href="?page={{num}}">{{num}}</a>													
                     {% endif %}														
                 {% endfor %}
@@ -85,7 +95,7 @@
                     </div>
                     <div class="bottom_desc">
                         <p>{{ job.description|slice:":280" }}<a href="/view/{{job.id}}">...View Job</a></p>
-                        <small>Posted {{ job.created_at|date:"SHORT_DATE_FORMAT" }} by <a href="/user/{{ job.poster.id }}/profile">{{ job.poster.first_name }} {{ job.poster.last_name }}</a></small>
+                        <small>Posted {{ job.created_at|date:"SHORT_DATE_FORMAT" }} by <a class=initials href="/user/{{ job.poster.id }}/profile">{{ job.poster.first_name.0 }}{{ job.poster.last_name.0 }}</a></small>
                         <!-- COMMENTS -->
                         {% if request.session.user_id != null %}
                             {% if job.comments.count > 0 %}
@@ -100,15 +110,10 @@
             {% endif %} 
         {% endfor %}
         </div>
-        
     </div>
     
 
-
-
-
     {% include 'footer.html' %}
-    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
 </body>
 </html>
 

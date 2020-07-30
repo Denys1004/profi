@@ -5,33 +5,75 @@ import bcrypt
 from datetime import datetime
 from django.core.paginator import Paginator
 
+from django.forms.models import model_to_dict # Need for sortation
+
 def index(request):
     return render(request, "home.html")
 
 # DASHBOARD PAGE
 def dashboard(request):
-    if 'user_id' not in request.session:
-        jobs = Job.objects.filter(executor=None).order_by('-created_at')
-        paginator = Paginator(jobs, 5)
-        page = request.GET.get('page')
-        jobs = paginator.get_page(page)
-        context = {
-            'users' : User.objects.all(),
-            'jobs': jobs
-        }
-        return render(request, 'dashboard.html', context)
+    if request.method == 'GET':
+        if 'user_id' not in request.session:
+            jobs = Job.objects.filter(executor=None).order_by('-created_at')
+            paginator = Paginator(jobs, 4)
+            page = request.GET.get('page')
+            jobs = paginator.get_page(page)
+            context = {
+                'users' : User.objects.all(),
+                'all_categories': Category.objects.all(),
+                'jobs': jobs
+            }
+            return render(request, 'dashboard.html', context)
+        else:
+            jobs = Job.objects.filter(executor=None).order_by('-created_at')
+            paginator = Paginator(jobs, 4)
+            page = request.GET.get('page')
+            jobs = paginator.get_page(page)
+            context = {
+                'cur_user':  User.objects.get(id = request.session['user_id']),
+                'users' : User.objects.all(),
+                'all_categories': Category.objects.all(),
+                'jobs': jobs
+            }
+            return render(request, 'dashboard.html', context)
     else:
-        jobs = Job.objects.filter(executor=None).order_by('-created_at')
-        paginator = Paginator(jobs, 5)
-        page = request.GET.get('page')
-        jobs = paginator.get_page(page)
+        if request.POST['category'] == 'all':
+            jobs = Job.objects.filter(executor=None).order_by('-created_at')
+            paginator = Paginator(jobs, 4)
+            page = request.GET.get('page')
+            jobs = paginator.get_page(page)
+            context = {
+                'cur_user':  User.objects.get(id = request.session['user_id']),
+                'users' : User.objects.all(),
+                'all_categories': Category.objects.all(),
+                'jobs': jobs
+            }
+            return render(request, 'dashboard.html', context)
+        else:
+            needed_category = Category.objects.get(name = request.POST['category'])
+            jobs = needed_category.job.all()
+            context = {
+                'cur_user':  User.objects.get(id = request.session['user_id']),
+                'users' : User.objects.all(),
+                'all_categories': Category.objects.all(),
+                'jobs': jobs
+            }
+            return render(request, 'dashboard.html', context)
 
-        context = {
-            'cur_user':  User.objects.get(id = request.session['user_id']),
-            'users' : User.objects.all(),
-            'jobs': jobs
-        }
-        return render(request, 'dashboard.html', context)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # REGISTRATION
 def create(request):
@@ -247,3 +289,7 @@ def add_comment(request, job_id):
         return redirect(f'/view/{job_id}')
     print("COMMENT OUTSIDE", new_comment)
     return redirect('/dashboard')
+
+
+
+
