@@ -401,9 +401,6 @@ section{
         }
     }
     #display_jobs{
-        overflow-x: hidden;
-        overflow-y: auto;
-        max-height: 70vh;
         .job_container{
             border: 2px solid $grey;
             background-color: $white;
@@ -432,6 +429,18 @@ section{
                 p{
                     margin-bottom: 0rem;
                 }
+            }
+        }
+    }
+    .pagination_container{
+        width: 100%;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        .pagination{
+            margin: auto;
+            a{
+                padding: 0 10px;
             }
         }
     }
@@ -625,9 +634,6 @@ section{
     padding: 10px;
     text-align: center;
     #all_users_display{
-        overflow-x: hidden;
-        overflow-y: auto;
-        max-height: 70vh;
         #user_name{
             text-align: left;
         }

@@ -3,6 +3,7 @@ from .models import *
 from django.contrib import messages
 import bcrypt
 from datetime import datetime
+from django.core.paginator import Paginator
 
 def index(request):
     return render(request, "home.html")
@@ -10,16 +11,25 @@ def index(request):
 # DASHBOARD PAGE
 def dashboard(request):
     if 'user_id' not in request.session:
+        jobs = Job.objects.filter(executor=None).order_by('-created_at')
+        paginator = Paginator(jobs, 5)
+        page = request.GET.get('page')
+        jobs = paginator.get_page(page)
         context = {
             'users' : User.objects.all(),
-            'all_jobs' : Job.objects.all().order_by('-created_at'),
+            'jobs': jobs
         }
         return render(request, 'dashboard.html', context)
     else:
+        jobs = Job.objects.filter(executor=None).order_by('-created_at')
+        paginator = Paginator(jobs, 5)
+        page = request.GET.get('page')
+        jobs = paginator.get_page(page)
+
         context = {
             'cur_user':  User.objects.get(id = request.session['user_id']),
             'users' : User.objects.all(),
-            'all_jobs' : Job.objects.all().order_by('-created_at'),
+            'jobs': jobs
         }
         return render(request, 'dashboard.html', context)
 
@@ -133,7 +143,8 @@ def add_job(request, job_id):
     job.executor = user
     job.save()
     messages.success(request, "Job successfully added to your active jobs!")
-    return redirect(f'/user/{user.id}/profile')
+    # return redirect(f'/user/{user.id}/profile')
+    return redirect('/dashboard')
 
 # DONE WITH JOB
 def done_job(request, job_id):
@@ -147,7 +158,7 @@ def giveup_job(request, job_id):
     job = Job.objects.get(id =job_id)
     job.executor = None
     job.save()
-    messages.success(request, "You succesfully gave up this job!")
+    messages.success(request, "You gave up this job!")
     return redirect(f'/user/{user.id}/profile')
 
 # EDIT JOB

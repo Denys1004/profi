@@ -512,12 +512,6 @@ section #phone_container .phone_image img {
   text-transform: uppercase;
 }
 
-.dashboard_page_container #display_jobs {
-  overflow-x: hidden;
-  overflow-y: auto;
-  max-height: 70vh;
-}
-
 .dashboard_page_container #display_jobs .job_container {
   border: 2px solid #ededed;
   background-color: #fff;
@@ -555,6 +549,25 @@ section #phone_container .phone_image img {
 
 .dashboard_page_container #display_jobs .job_container .bottom_desc p {
   margin-bottom: 0rem;
+}
+
+.dashboard_page_container .pagination_container {
+  width: 100%;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.dashboard_page_container .pagination_container .pagination {
+  margin: auto;
+}
+
+.dashboard_page_container .pagination_container .pagination a {
+  padding: 0 10px;
 }
 
 #profile_header {
@@ -769,12 +782,6 @@ section #phone_container .phone_image img {
   margin: 0 auto;
   padding: 10px;
   text-align: center;
-}
-
-.all_users_page_container #all_users_display {
-  overflow-x: hidden;
-  overflow-y: auto;
-  max-height: 70vh;
 }
 
 .all_users_page_container #all_users_display #user_name {

@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
     <title>Home</title>
     <link href="https://fonts.googleapis.com/css2?family=Trade+Winds&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script defer src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -38,10 +39,32 @@
             {% endfor %}                                                      									
         {% endif %} 
 
-
+        <div class="pagination_container">
+            <!-- this link need for << >> symbols -->
+            <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"> -->
+            <div class="pagination">
+                {% if jobs.has_previous %} 										
+                    <a href="?page=1"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>      					
+                    <a href="?page={{ jobs.previous_page_number }}"><i class="fa fa-angle-left" aria-hidden="true"></i></a>	
+                {% endif %} 
         
+                {% for num in jobs.paginator.page_range %} 	
+                    {% if jobs.number == num %}
+                        <strong>{{ num }}</strong>											
+                    {% elif num > jobs.number|add:'-3' and num < jobs.number|add:'3' %}					
+                        <a href="?page={{num}}">{{num}}</a>													
+                    {% endif %}														
+                {% endfor %}
+        
+                {% if jobs.has_next %} 												
+                    <a href="?page={{ jobs.next_page_number }}"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                    <a href="?page={{ jobs.paginator.num_pages }}"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+                {% endif %} 
+            </div>
+        </div>
+
         <div id="display_jobs">
-        {% for job in all_jobs %}
+        {% for job in jobs %}
             <!-- if nobody does this job -->
             {% if job.executor == null %}
                 <div class="job_container">
