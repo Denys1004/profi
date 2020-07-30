@@ -99,8 +99,13 @@ body {
 .nav-container nav #menu_container .menu_list_container a #initials {
   background-color: #b0242e;
   border-radius: 50%;
-  padding: 6px;
+  font-family: 'Anonymous Pro', monospace;
+  padding: 4px 6px;
+  font-size: 18px;
   min-width: 35px;
+  max-width: 35px;
+  min-height: 35px;
+  max-height: 35px;
   text-transform: uppercase;
   color: #fff;
 }
@@ -231,6 +236,7 @@ body .nav-links #initials_logo a {
   background-color: #b0242e;
   border-radius: 50%;
   padding: 18px 12px;
+  font-family: 'Anonymous Pro', monospace;
   margin: auto;
   min-width: 80px;
   max-width: 80px;
@@ -552,10 +558,17 @@ section #phone_container .phone_image img {
 }
 
 .dashboard_page_container #display_jobs .job_container .bottom_desc small .initials {
-  font-size: 16px;
-  font-weight: bold;
+  background-color: #b0242e;
+  border-radius: 50%;
+  padding: 5px 5px;
+  min-width: 30px;
+  min-height: 30px;
+  max-height: 30px;
+  font-family: 'Anonymous Pro', monospace;
+  max-width: 30px;
+  font-size: 12px;
   text-transform: uppercase;
-  color: #b0242e;
+  color: #fff;
 }
 
 .dashboard_page_container .pagination_container {
@@ -651,8 +664,18 @@ section #phone_container .phone_image img {
 
 #profile_header #profile_initial {
   display: inline-block;
-  font-size: 80px;
+  margin: 0;
+  padding: 5px 12px;
+  min-width: 100px;
+  min-height: 100px;
+  max-height: 100px;
+  max-width: 100px;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 70px;
+  border: 3px solid #b0242e;
+  border-radius: 50%;
   color: #b0242e;
+  margin-bottom: 8px;
 }
 
 #profile_header .personal_info {
