@@ -12,10 +12,13 @@
         <div id="profile_header">
             <h1 id="profile_initial">{{ initials }}</h1>
             <div class="personal_info">
-                <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+                
                 {% if request.session.user_id != null %}
+                    <h3>{{ user.first_name }} {{ user.last_name }}</h3>
                     <p>{{ user.email }}</p>
                     <p id="dob"> DOB: {{ user.birth_date|date:'Y/m/d' }}</p>
+                {% else %}
+                    <h3>{{ user.first_name }} {{ user.last_name.0 }}.</h3>
                 {% endif %}
             </div>
         </div>
@@ -49,7 +52,7 @@
                                     <a href="/view/{{job.id}}">...View</a>
                                     {% if job.comments.count > 0 %}
                                     <div class="comments_count_container">
-                                        <small class="comments_count"><a href="/view/{{job.id}}">Comments: {{job.comments.count}}</a></small>
+                                        <small class="comments_count"><a href="/view/{{job.id}}"><span>Comments:</span> {{job.comments.count}}</a></small>
                                     </div>
                                     {% endif %}
                                 </td>

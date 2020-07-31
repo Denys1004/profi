@@ -1,6 +1,13 @@
 // DASHBOARD PAGE
 // *****************************************************************************************
 .dashboard_page_container{
+    a{
+        color: $black;
+        text-decoration: none;
+        &:hover{
+            text-decoration: underline;
+        }
+    }
     max-width: 1000px;
     margin: 0 auto;
     padding: 10px;
@@ -14,6 +21,7 @@
             min-width: 200px;
             padding: 10px 20px;
             text-align: center;
+            text-decoration: none;
             flex: 0.2;
             margin: 20px;
             background-color: $white;
@@ -21,6 +29,11 @@
             color: $red;
             font-weight: bold;
             text-transform: uppercase;
+            &:hover{
+                background-color: $red ;
+                border: 2px solid $red;
+                color: $white;
+            }
         }
     }
     .sort_container{
@@ -42,12 +55,18 @@
                         margin: 0;
                         a{
                             color: $black;
+                            font-weight: bold;
+                            
                         }
                     }
                 }
                 .action{
                     a{
                         color: $red;
+                        text-decoration: none;
+                        &:hover{
+                            text-decoration: underline;
+                        }
                     }
                 }
             }
@@ -56,6 +75,9 @@
                 background-color: $white;
                 p{
                     margin-bottom: 0rem;
+                    a{
+                        font-weight: bold;
+                    }
                 }
                 small{
                     font-size: 14px;
@@ -66,6 +88,9 @@
                 .comments_count{
                     a{
                         font-size: 16px;
+                        span{
+                            color: $black;
+                        }
                     }
                 }
             }
@@ -79,8 +104,14 @@
         .pagination{
             margin: auto;
             a{
-                padding: 0 15px;
+                padding: 1.4px 18px;
+                font-size: 19px;
+                font-weight: bold;
             }
+        }
+        #page_num{
+            font-size: 20px;
+            color: $red;
         }
     }
 }
@@ -113,6 +144,7 @@
     }
     .mybutton5{
         min-width: 60px;
+        text-decoration: none;
         padding: 0 6px;
         font-size: 16px;
         text-align: center;

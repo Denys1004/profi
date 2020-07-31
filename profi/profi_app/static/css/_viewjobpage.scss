@@ -1,9 +1,19 @@
 // VIEW JOB PAGE
 // *****************************************************************************************
+a{
+    color: $red;
+    text-decoration: none;
+    &:hover{
+        text-decoration: underline;
+        color: $black;
+    }
+}
+
 #job_details{
     font-size: 24px;
     font-weight: bold;
 }
+
 .mybutton2{
     min-width: 100px;
     padding: 10px 20px;

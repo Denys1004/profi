@@ -16,7 +16,7 @@
             {% endif %}
             <h1>Dashboard</h1>
             {% if request.session.user_id == null %}
-            <small>*Please <a href="/login">login</a> to be able use full App</small>
+            <small>*Please <a href="/login">login</a> to be able to use full App</small>
             <br>
             {% endif %}
         </div>
@@ -30,6 +30,7 @@
             {% endfor %}                                                      									
         {% endif %} 
 
+        {% if request.session.user_id != null %}
         <div class="sort_container">
             <form class='sort' action="/dashboard" method="post">
                 {% csrf_token %}
@@ -42,11 +43,11 @@
                         <option value="all">All</option>
                     </select>
                 </div>
-                <button class="mybutton4">Sort</button>
+                <button class="mybutton4">Show</button>
             </form>
             <a href="/dashboard" class="mybutton5">Show All</a>
         </div>
-
+        {% endif %} 
 
         <div class="pagination_container">
             <!-- this link need for << >> symbols -->
@@ -59,7 +60,7 @@
         
                 {% for num in jobs.paginator.page_range %} 	
                     {% if jobs.number == num %}
-                        <strong>{{ num }}</strong>											
+                        <strong id="page_num">{{ num }}</strong>											
                     {% elif num > jobs.number|add:'-2' and num < jobs.number|add:'2' %}					
                         <a href="?page={{num}}">{{num}}</a>													
                     {% endif %}														
@@ -93,13 +94,13 @@
                         </div>
                     </div>
                     <div class="bottom_desc">
-                        <p>{{ job.description|slice:":280" }}<a href="/view/{{job.id}}">...View Job</a></p>
+                        <p>{{ job.description|slice:":280" }}<a href="/view/{{job.id}}">...View</a></p>
                         <small>Posted {{ job.created_at|date:"SHORT_DATE_FORMAT" }} by <a href="/user/{{ job.poster.id }}/profile">{{ job.poster.first_name }} {{ job.poster.last_name.0 }}.</a></small>
                         <!-- COMMENTS -->
                         {% if request.session.user_id != null %}
                             {% if job.comments.count > 0 %}
                             <div class="comments_count_container">
-                                <small class="comments_count"><a href="/view/{{job.id}}">Comments: {{job.comments.count}}</a></small>
+                                <small class="comments_count"><a href="/view/{{job.id}}"><span>Comments:</span> {{job.comments.count}}</a></small>
                             </div>
                             {% endif %}
                         {% endif %}

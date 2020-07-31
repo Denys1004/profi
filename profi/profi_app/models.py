@@ -83,6 +83,8 @@ class User(models.Model):
     created_at = models.DateTimeField(auto_now_add = True)  								
     updated_at = models.DateTimeField(auto_now = True)									
     objects = UserManager()
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
 
 class Job(models.Model):
     title = models.CharField(max_length = 255, null = True)
@@ -95,11 +97,15 @@ class Job(models.Model):
     objects = JobManager()
     #categories
     #comments
+    def __str__(self):
+        return self.title
 class Category(models.Model):
     name = models.CharField(max_length = 255)
     job = models.ManyToManyField(Job, related_name = 'categories')
     created_at = models.DateTimeField(auto_now_add = True)  								
-    updated_at = models.DateTimeField(auto_now = True)	
+    updated_at = models.DateTimeField(auto_now = True)
+    def __str__(self):
+        return self.name
 
 
 class Comment(models.Model):
@@ -108,3 +114,5 @@ class Comment(models.Model):
     job = models.ForeignKey(Job, related_name = 'comments', on_delete=models.CASCADE) # message where comment was posted on. Message has comments, but comment belongs to one message 
     created_at = models.DateTimeField(auto_now_add = True)  								
     updated_at = models.DateTimeField(auto_now = True)	
+    def __str__(self):
+        return f"{self.poster.first_name} {self.poster.last_name}: {self.comment}"

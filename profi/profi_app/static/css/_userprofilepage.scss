@@ -47,6 +47,9 @@
             small{
                 font-size: 15px;
             }
+            a{
+                font-weight: bold;
+            }
         }
         .td_action{
             text-align: center;
@@ -78,7 +81,7 @@
     color: $red;
 }
 .no_work_mess{
-    background-color: rgb(203, 230, 205);
+    background-color: $white;
     color: $darkgrey;
     font-weight: bold;
     font-size: 16px;
