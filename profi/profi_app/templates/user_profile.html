@@ -30,7 +30,7 @@
         <!-- For logged in user -->
         {% if user.id == request.session.user_id %}
             {% if all_active_jobs|length > 0 %}
-                <h3>All active jobs:</h3>
+                <h3 class="active">Active jobs:</h3>
                 <table class="table table-bordered mt-1">
                     <thead class="thead-dark">
                         <tr>
@@ -65,17 +65,17 @@
                     </tbody>
                 </table>
             {% else %}
-            <h3>No active jobs</h3>
+            <h3 class="no_work_mess">No active jobs</h3>
             {% endif %}
 
             {% if all_posted_jobs|length > 0 %}
-                <h3>All jobs posted by {{ user.first_name }}:</h3>
+                <h3 class="work_mess">All jobs posted by {{ user.first_name }}:</h3>
                 {% for posted_job in all_posted_jobs %}
                 <div class="posted_job_container">
                     <div class="posted_job_title">
                         <p>{{ posted_job.title }}</p>
                         <small>{{ posted_job.location }}</small> <br>
-                        <small>Posted {{ posted_job.created_at|date:'Y/m/d'}}</small>
+                        <small class='darkgrey'>Posted {{ posted_job.created_at|date:'Y/m/d'}}</small>
                         {% if posted_job.comments.count > 0 %}
                         <div class="comments_count_container">
                             <small class="comments_count"><a href="/view/{{posted_job.id}}">Comments: {{posted_job.comments.count}}</a></small>
@@ -97,11 +97,11 @@
                 <hr>
                 {% endfor %}
             {% else %}
-                <h3>No posted jobs</h3>
+                <h3 class="no_work_mess">No posted jobs</h3>
             {% endif %}
 
         {% else %}
-            <h3>All jobs posted by {{ user.first_name }}</h3>
+            <h3 class="work_mess">All jobs posted by {{ user.first_name }}</h3>
             {% for posted_job in all_posted_jobs %}
             <div class="posted_job_container">
                 <div class="posted_job_title">

@@ -34,7 +34,7 @@
             <form class='sort' action="/dashboard" method="post">
                 {% csrf_token %}
                 <div class="input_field">
-                    <label for='category'>Show only: </label>
+                    <label for='category'>Category:</label>
                     <select id="category" name="category">
                         {% for category in all_categories %}
                         <option value="{{ category.name }}">{{ category.name }}</option>
@@ -43,7 +43,6 @@
                     </select>
                 </div>
                 <button class="mybutton4">Sort</button>
-                
             </form>
             <a href="/dashboard" class="mybutton5">Show All</a>
         </div>
@@ -95,7 +94,7 @@
                     </div>
                     <div class="bottom_desc">
                         <p>{{ job.description|slice:":280" }}<a href="/view/{{job.id}}">...View Job</a></p>
-                        <small>Posted {{ job.created_at|date:"SHORT_DATE_FORMAT" }} by <a class=initials href="/user/{{ job.poster.id }}/profile">{{ job.poster.first_name.0 }}{{ job.poster.last_name.0 }}</a></small>
+                        <small>Posted {{ job.created_at|date:"SHORT_DATE_FORMAT" }} by <a href="/user/{{ job.poster.id }}/profile">{{ job.poster.first_name }} {{ job.poster.last_name.0 }}.</a></small>
                         <!-- COMMENTS -->
                         {% if request.session.user_id != null %}
                             {% if job.comments.count > 0 %}
