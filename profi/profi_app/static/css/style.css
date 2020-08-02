@@ -742,7 +742,6 @@ section #phone_container .phone_image img {
 }
 
 .dashboard_page_container a {
-  color: black;
   text-decoration: none;
 }
 
@@ -844,15 +843,10 @@ section #phone_container .phone_image img {
 
 .dashboard_page_container #display_jobs .job_container .bottom_desc small {
   font-size: 14px;
-  color: #a0a0a0;
 }
 
 .dashboard_page_container #display_jobs .job_container .comments_count_container .comments_count a {
   font-size: 16px;
-}
-
-.dashboard_page_container #display_jobs .job_container .comments_count_container .comments_count a span {
-  color: black;
 }
 
 .dashboard_page_container .pagination_container {
@@ -874,6 +868,7 @@ section #phone_container .phone_image img {
   padding: 1.4px 18px;
   font-size: 19px;
   font-weight: bold;
+  color: black;
 }
 
 .dashboard_page_container .pagination_container #page_num {
@@ -917,27 +912,6 @@ section #phone_container .phone_image img {
   background-color: #fff;
   border: 2px solid #a0a0a0;
   color: #a0a0a0;
-  text-decoration: none;
-}
-
-.sort_container .mybutton5 {
-  min-width: 60px;
-  text-decoration: none;
-  padding: 0 6px;
-  font-size: 16px;
-  text-align: center;
-  background-color: #fff;
-  border: 2px solid #a0a0a0;
-  letter-spacing: 1px;
-  color: #a0a0a0;
-  margin-bottom: 5px;
-  margin-left: 10px;
-}
-
-.sort_container .mybutton5:hover {
-  background-color: #a0a0a0;
-  border: 2px solid #a0a0a0;
-  color: #fff;
   text-decoration: none;
 }
 
@@ -1169,13 +1143,11 @@ section #phone_container .phone_image img {
 }
 
 a {
-  color: #b0242e;
   text-decoration: none;
 }
 
 a:hover {
   text-decoration: underline;
-  color: black;
 }
 
 #job_details {

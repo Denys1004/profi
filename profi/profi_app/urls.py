@@ -8,6 +8,8 @@ urlpatterns = [
     path('logout', views.logout),
 
     path('dashboard', views.dashboard),
+    path('dashboard/show', views.proccess_category),
+    path('dashboard/show/<str:category_name>', views.view_category),
 
     path('create_new_job', views.create_new_job),
     path('all_users', views.all_users),

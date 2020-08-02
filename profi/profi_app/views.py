@@ -12,61 +12,51 @@ def index(request):
 
 # DASHBOARD PAGE
 def dashboard(request):
-    if request.method == 'GET':
-        if 'user_id' not in request.session:
-            jobs = Job.objects.filter(executor=None).order_by('-created_at')
-            paginator = Paginator(jobs, 4)
-            page = request.GET.get('page')
-            jobs = paginator.get_page(page)
-            context = {
-                'users' : User.objects.all(),
-                'all_categories': Category.objects.all(),
-                'jobs': jobs
-            }
-            return render(request, 'dashboard.html', context)
-        else:
-            jobs = Job.objects.filter(executor=None).order_by('-created_at')
-            paginator = Paginator(jobs, 4)
-            page = request.GET.get('page')
-            jobs = paginator.get_page(page)
-            context = {
-                'cur_user':  User.objects.get(id = request.session['user_id']),
-                'users' : User.objects.all(),
-                'all_categories': Category.objects.all(),
-                'jobs': jobs
-            }
-            return render(request, 'dashboard.html', context)
+    if 'user_id' not in request.session:
+        jobs = Job.objects.filter(executor=None).order_by('-created_at')
+        paginator = Paginator(jobs, 4)
+        page = request.GET.get('page')
+        jobs = paginator.get_page(page)
+        context = {
+            'users' : User.objects.all(),
+            'all_categories': Category.objects.all(),
+            'jobs': jobs
+        }
+        return render(request, 'dashboard.html', context)
     else:
-        if request.POST['category'] == 'all':
-            jobs = Job.objects.filter(executor=None).order_by('-created_at')
-            paginator = Paginator(jobs, 4)
-            page = request.GET.get('page')
-            jobs = paginator.get_page(page)
-            context = {
-                'cur_user':  User.objects.get(id = request.session['user_id']),
-                'users' : User.objects.all(),
-                'all_categories': Category.objects.all(),
-                'jobs': jobs
-            }
-            return render(request, 'dashboard.html', context)
-        else:
-            needed_category = Category.objects.get(name = request.POST['category'])
-            jobs = needed_category.job.all()
-            context = {
-                'cur_user':  User.objects.get(id = request.session['user_id']),
-                'users' : User.objects.all(),
-                'all_categories': Category.objects.all(),
-                'jobs': jobs
-            }
-            return render(request, 'dashboard.html', context)
+        jobs = Job.objects.filter(executor=None).order_by('-created_at')
+        paginator = Paginator(jobs, 4)
+        page = request.GET.get('page')
+        jobs = paginator.get_page(page)
+        context = {
+            'cur_user':  User.objects.get(id = request.session['user_id']),
+            'users' : User.objects.all(),
+            'all_categories': Category.objects.all().order_by('name'),
+            'jobs': jobs
+        }
+        return render(request, 'dashboard.html', context)
 
+def proccess_category(request):
+    if request.POST['category'] == 'all':
+        return redirect("/dashboard")
+    else:
+        needed_category = Category.objects.get(name = request.POST['category'])
+        return redirect(f"/dashboard/show/{needed_category.name}")
 
-
-
-
-
-
-
+def view_category(request, category_name):
+    needed_category = Category.objects.get(name = category_name)
+    category_jobs = needed_category.job.all()
+    paginator = Paginator(category_jobs, 4)
+    page = request.GET.get('page')
+    category_jobs = paginator.get_page(page)
+    context = {
+        'cur_user':  User.objects.get(id = request.session['user_id']),
+        'users' : User.objects.all(),
+        'all_categories': Category.objects.exclude(name = needed_category.name),
+        'jobs': category_jobs,
+        'active_category': needed_category
+    }
+    return render(request, 'category.html', context)
 
 
 

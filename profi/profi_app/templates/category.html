@@ -37,10 +37,11 @@
                 <div class="input_field">
                     <label for='category'>Category:</label>
                     <select id="category" name="category">
-                        <option value="all" selected>All</option>
+                        <option value="{{ active_category.name }}" selected>{{ active_category.name }}</option>
                         {% for category in all_categories %}
-                        <option value="{{ category.name }}">{{ category.name }}</option>
+                            <option value="{{ category.name }}">{{ category.name }}</option>
                         {% endfor %}
+                        <option value="all">All</option>
                     </select>
                 </div>
                 <button class="mybutton4">Show</button>
@@ -115,53 +116,3 @@
     {% include 'footer.html' %}
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

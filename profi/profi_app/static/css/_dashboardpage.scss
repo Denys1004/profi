@@ -2,7 +2,6 @@
 // *****************************************************************************************
 .dashboard_page_container{
     a{
-        color: $black;
         text-decoration: none;
         &:hover{
             text-decoration: underline;
@@ -81,16 +80,12 @@
                 }
                 small{
                     font-size: 14px;
-                    color: $darkgrey;
                 }
             }
             .comments_count_container{
                 .comments_count{
                     a{
                         font-size: 16px;
-                        span{
-                            color: $black;
-                        }
                     }
                 }
             }
@@ -107,6 +102,7 @@
                 padding: 1.4px 18px;
                 font-size: 19px;
                 font-weight: bold;
+                color: $black;
             }
         }
         #page_num{
@@ -141,26 +137,7 @@
                 text-decoration: none;
             }
         } 
-    }
-    .mybutton5{
-        min-width: 60px;
-        text-decoration: none;
-        padding: 0 6px;
-        font-size: 16px;
-        text-align: center;
-        background-color: $white;
-        border: 2px solid $darkgrey;
-        letter-spacing: 1px;
-        color: $darkgrey;
-        margin-bottom: 5px;
-        margin-left: 10px;
-        &:hover{
-            background-color: $darkgrey;
-            border: 2px solid $darkgrey;
-            color: $white;
-            text-decoration: none;
-        }
-    }  
+    } 
 }
 
 
